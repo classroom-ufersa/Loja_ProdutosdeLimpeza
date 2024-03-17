@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "setor.h"
 
+
 typedef struct setor{
     char nome[50];
     char descrição[100];
