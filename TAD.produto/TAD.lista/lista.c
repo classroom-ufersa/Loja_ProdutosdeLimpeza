@@ -28,3 +28,17 @@ listaSetor *adiconarSetor(listaSetor *lista, Setor *setor){
 return lista;
 };
 
+listaSetor *buscarSetor(listaSetor *lista, Setor *setor){
+    listaSetor *p;
+    while(p != NULL && p->prox != lista && p->setor != setor){
+      p = p->prox;
+      if (p->setor == setor){
+        return p;
+      }
+    }
+    return NULL;
+};
+
+listaSetor *removerSetor(listaSetor *lista, Setor *setor){
+    
+};
