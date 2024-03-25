@@ -5,6 +5,15 @@ listaSetor *crialistaSetor(void){
     return NULL;
 }
 
+int verificarlistaVazia(listaSetor *lista){
+  if(lista == NULL){
+    return 1;
+  }
+  else {
+    return 0;
+  }
+}
+
 listaSetor *adiconarSetor(listaSetor *lista, Setor *setor){
     listaSetor *nova_lista = (listaSetor*)malloc(sizeof(listaSetor));
 
@@ -39,6 +48,32 @@ listaSetor *buscarSetor(listaSetor *lista, Setor *setor){
     return NULL;
 };
 
-listaSetor *removerSetor(listaSetor *lista, Setor *setor){
-    
-};
+listaSetor *removerSetor(listaSetor *lista, Setor *setor, int id){
+    listaSetor *atual = lista;
+
+    while(atual != NULL && atual->setor->nome != setor->nome){
+      atual = atual->prox;
+    }
+
+    if(atual == NULL){
+      return lista;
+    }
+    else{
+      lista = atual->prox;
+    }
+
+    if (atual->prox != NULL){
+      atual->prox->ant = atual->ant;
+    }
+  free(atual);
+  return lista;
+}
+
+void imprimirlistaSetor(listaSetor *lista){
+  listaSetor *atual = lista;
+
+  while(atual != NULL){
+    printf("Setor: %d\n", atual->setor->nome);
+    atual = atual->prox;
+  }
+}

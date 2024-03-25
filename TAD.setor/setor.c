@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "setor.h"
+#include "lista.c"
 
 
 typedef struct setor{
