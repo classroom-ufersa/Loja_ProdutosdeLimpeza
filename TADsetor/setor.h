@@ -2,12 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct setor *Setor;
+typedef struct setor Setor;
 
-Setor *criaSetor(char *nome, char *descricao, char *produto);
+Setor *criaSetor(void);
 
 int verificaSetorVazio(Setor* setor);
 
 Setor *adicionaSetor(Setor* setor, char *nome, char *descricao, char *produto);
 
-Setor *buscaSetor(Setor *setor, char *nome, char *descricao, char *produto);
+Setor *removeSetor(Setor *setor, char *nome, char *descricao, char *produto);
+
+Setor *liberaSetor(Setor *setor);

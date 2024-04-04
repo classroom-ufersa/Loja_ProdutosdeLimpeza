@@ -1,32 +1,18 @@
  #include "setor.h"
 
-typedef struct setor {
+struct setor {
     char nome[50];
     char descricao[100];
     char produto[50];
     struct setor* prox;
-} Setor;
+};
 
-Setor *criaSetor(char *nome, char *descricao, char *produto){
-   Setor *novo_setor = (Setor*)malloc(sizeof(Setor));
-        if(novo_setor == NULL){
-            printf("Erro ao alocar a memoria!\n");
-            exit(1);
-        }
-    strcpy(novo_setor->nome, nome);
-    strcpy(novo_setor->descricao, descricao);
-    strcpy(novo_setor->produto, produto);
-    novo_setor->prox = NULL;
-    return novo_setor;
+Setor *criaSetor(void){
+    return NULL;
 }
 
 int verificaSetorVazio(Setor* setor){
-    if (setor == NULL){
-        return 1;
-    }
-    else{
-        return 0;
-    }
+    return (setor == NULL);
 }
 
 Setor *adicionaSetor(Setor* setor, char *nome, char *descricao, char *produto){
@@ -35,7 +21,7 @@ Setor *adicionaSetor(Setor* setor, char *nome, char *descricao, char *produto){
     if(novo_setor == NULL){
         printf("Erro na alocacao de memoria!\n");
         exit(1);
-    }
+    } 
 
     strcpy(novo_setor->nome, nome);
     strcpy(novo_setor->descricao, descricao);
@@ -46,20 +32,7 @@ Setor *adicionaSetor(Setor* setor, char *nome, char *descricao, char *produto){
     return novo_setor;
 }
 
-Setor *buscaSetor(Setor *setor, char *nome, char *descricao, char *produto){
-    Setor *atual = setor;
-    while(atual != NULL){
-        if(strcmp(atual->nome, nome)== 0 &&
-           strcmp(atual->descricao, descricao) == 0 &&
-           strcmp(atual->produto, produto) == 0) {
-            return atual;
-           } 
-           atual = atual->prox;
-    }
-    return NULL;
-}
-
-Setor *retiraSetor(Setor *setor, char *nome, char *descricao, char *produto){
+Setor *removeSetor(Setor *setor, char *nome, char *descricao, char *produto){
     Setor *ant = NULL;
     Setor *atual = setor;
 
@@ -84,16 +57,8 @@ Setor *retiraSetor(Setor *setor, char *nome, char *descricao, char *produto){
 }
 
 Setor *liberaSetor(Setor *setor){
-    
-}
-
-int main() {
-    Setor *setor = NULL;
-    Setor *novo_setor = criaSetor("Alimentos", "Setor de alimentos", "Comida");
-    setor = adicionaSetor(setor, "Alimentos", "Setor de alimentos", "Comida");
-    printf("%s\n", novo_setor->nome);
-    printf("%s\n", novo_setor->descricao);
-    printf("%s\n", novo_setor->produto);
-    return 0;
-
+    if (setor != NULL) {
+        free(setor);
+    }
+    return NULL;
 }
