@@ -4,6 +4,8 @@
 
 typedef struct setor Setor;
 
+Setor *EscreveSetores(Setor* setor);
+
 Setor *criaSetor(void);
 
 int verificaSetorVazio(Setor* setor);

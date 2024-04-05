@@ -7,6 +7,13 @@ struct setor {
     struct setor* prox;
 };
 
+Setor *EscreveSetores(Setor* setor){
+    FILE *arq = ("setores.txt", "w");
+    if(arq == NULL){
+        printf("Erro ao abrir o arquivo!\n");
+        exit(1);
+    }
+}
 Setor *criaSetor(void){
     return NULL;
 }

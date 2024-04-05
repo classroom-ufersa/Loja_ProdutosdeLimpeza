@@ -12,4 +12,5 @@ int main(){
     printf("[6] Listar setores existentes");
     printf("[7] Buscar produto \n");
     printf("[8] Sair \n");
+    printf("-------------------------\n");
 }
