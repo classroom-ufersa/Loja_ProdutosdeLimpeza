@@ -8,12 +8,23 @@ struct setor {
 };
 
 Setor *EscreveSetores(Setor* setor){
-    FILE *arq = ("setores.txt", "w");
+    FILE *arq = fopen("Setores.txt", "w");
     if(arq == NULL){
         printf("Erro ao abrir o arquivo!\n");
         exit(1);
     }
+    Setor *atual = setor;
+
+    while(atual != NULL){
+        fprintf(arq, "Setor: \n");
+        fprintf(arq, "Nome do setor: %s\n", atual->nome);
+        fprintf(arq, "Descricao do setor: %s\n", atual->descricao);
+        fprintf(arq, "Produto do setor: %s\n", atual->produto);
+        atual = atual->prox;
+    }
+    fclose(arq);
 }
+
 Setor *criaSetor(void){
     return NULL;
 }
