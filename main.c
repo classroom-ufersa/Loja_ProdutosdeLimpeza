@@ -25,3 +25,4 @@ void cabecalho(){
     printf("LOJA DE PRODUTOS DE LIMPEZA\n");
     printf("------------------------------------------\n");
 }
+
