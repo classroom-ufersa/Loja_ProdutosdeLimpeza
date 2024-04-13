@@ -11,17 +11,17 @@ Setor *criaSetor(void){
     return NULL;
 }
 
-int verificaSetorVazio(Setor* setor){
+int verificaSetorVazio(Setor *setor){
     return (setor == NULL);
 }
 
-Setor *adicionaSetor(Setor* setor, char *nome, char *descricao, char *produto){
+Setor *adicionaSetor(Setor *setor, char *nome, char *descricao, char *produto){
     Setor *novo_setor = (Setor*)malloc(sizeof(Setor));
 
     if(novo_setor == NULL){
         printf("Erro na alocacao de memoria!\n");
         exit(1);
-    } 
+    }
 
     strcpy(novo_setor->nome, nome);
     strcpy(novo_setor->descricao, descricao);
@@ -34,26 +34,42 @@ Setor *adicionaSetor(Setor* setor, char *nome, char *descricao, char *produto){
 
 Setor *removeSetor(Setor *setor, char *nome, char *descricao, char *produto){
     Setor *ant = NULL;
-    Setor *atual = setor;
+    Setor *aux = setor;
 
-    while(atual != NULL){
-        if (strcmp(atual->nome, nome) == 0 &&
-            strcmp(atual->descricao, descricao) == 0 &&
-            strcmp(atual->produto, produto) == 0){
+    while(aux != NULL){
+        if (strcmp(aux->nome, nome) == 0 &&
+            strcmp(aux->descricao, descricao) == 0 &&
+            strcmp(aux->produto, produto) == 0){
                 if(ant == NULL){
-                    setor = atual->prox;
+                    setor = aux->prox;
                 }
                 else{
-                    ant->prox = atual->prox;
+                    ant->prox = aux->prox;
                 }
-                free(atual);
+                free(aux);
                 return setor;
             }
-        ant = atual;
-        atual = atual->prox;
+        ant = aux;
+        aux = aux->prox;
     }
     printf("Setor nao encontrado! \n");
         return setor;
+}
+
+void imprimeSetor(Setor *setor){
+    if(setor == NULL){
+        printf("Setor vazio");
+        return;
+    }
+
+     Setor *aux = setor;
+     while(aux != NULL){
+        printf("Nome do setor: %s\n", aux->nome);
+        printf("Descricao do setor: %s\n", aux->descricao);
+        printf("Produto do setor: %s\n", aux->produto);
+
+        aux = aux->prox;
+     }
 }
 
 Setor *liberaSetor(Setor *setor){
@@ -63,7 +79,7 @@ Setor *liberaSetor(Setor *setor){
     return NULL;
 }
 
-Setor *EscreveSetores(Setor* setor){
+Setor *EscreveSetores(Setor *setor){
     FILE *arq = fopen("Setores.txt", "wt");
     if(arq == NULL){
         printf("Erro ao abrir o arquivo!\n");

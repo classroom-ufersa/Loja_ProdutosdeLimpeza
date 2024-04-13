@@ -5,16 +5,20 @@
 
 typedef struct setor Setor;
 
-Setor *EscreveSetores(Setor* setor);
-
 Setor *criaSetor(void);
 
-int verificaSetorVazio(Setor* setor);
+int verificaSetorVazio(Setor *setor);
 
-Setor *adicionaSetor(Setor* setor, char *nome, char *descricao, char *produto);
+Setor *adicionaSetor(Setor *setor, char *nome, char *descricao, char *produto);
 
 Setor *removeSetor(Setor *setor, char *nome, char *descricao, char *produto);
 
+void imprimeSetor(Setor *setor);
+
 Setor *liberaSetor(Setor *setor);
+
+Setor *EscreveSetores(Setor *setor);
+
+Setor *LerSetores(Setor *setor);
 
 #endif //SETOR_H
