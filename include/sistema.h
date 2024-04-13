@@ -6,4 +6,6 @@
 #include <string.h>
 #include <ctype.h>
 
+int contem_apenas_letras( char *str);
+
 #endif //SISTEMA_H 
