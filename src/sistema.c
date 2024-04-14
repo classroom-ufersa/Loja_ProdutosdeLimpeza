@@ -9,15 +9,15 @@ int contem_apenas_letras( char *str){
     }
 }
 
-int contem_apenas_numeros(char *str) {
+float lerFloat() {
+    char input[100];
 
-    for (int index = 0; str[index] != '\0'; index++) {
-        if (isalpha(str[index]) && str[index]) {
-            printf("só aceita numero!!!!!!!!\n");
-            return 0;
-        }
-    }
-    return 1;
+    printf("Digite um número decimal: ");
+    fgets(input, sizeof(input), stdin);
+
+    float numero = atof(input);
+
+    return numero;
 }
 
 void upper_string(char *str) {
