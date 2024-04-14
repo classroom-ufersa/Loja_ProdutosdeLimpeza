@@ -9,6 +9,17 @@ int contem_apenas_letras( char *str){
     }
 }
 
+int contem_apenas_numeros(char *str) {
+
+    for (int index = 0; str[index] != '\0'; index++) {
+        if (isalpha(str[index]) && str[index]) {
+            printf("só aceita numero!!!!\n");
+            return 0;
+        }
+    }
+    return 1;
+}
+
 float lerFloat() {
     char input[100]; // buffer para armazenar a entrada do usuário
 
@@ -27,3 +38,5 @@ void cabecalho(){
     printf("LOJA DE PRODUTOS DE LIMPEZA\n");
     printf("------------------------------------------\n");
 }
+
+
