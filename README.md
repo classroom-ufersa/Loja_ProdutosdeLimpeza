@@ -7,7 +7,7 @@
 
 ###
 
-<p align="left">1. Introdução <br>2. Problemática<br>3. Descrição <br>4. Organização do repositório <br>5. Listas encadeadas <br>6. Funções em setor<br>7. Funções em produto <br>8. Funções em main <br>9. Execução do projeto</p>
+<p align="left">1. Introdução <br>2. Problemática<br>3. Descrição <br>4. Organização do repositório <br>5. Listas encadeadas <br>6. Funções em setor<br>7. Funções em produto <br>8. Funções em main. <br>
 
 ###
 
@@ -48,5 +48,61 @@
 ###
 
 <p align="left">1. Adicionar porduto; <br>2. Remover produto; <br>3. Editar produto;<br>4. Adicionar novo setor;<br>5. Remover setor existente;<br>6. Listar todos os setores e produtos;<br>7. Buscar produto; <br>8. Sair.</p>
+
+###
+
+<h2 align="left">3. DESCRIÇÃO</h2>
+
+###
+
+<p align="left">O sistema conta com duas TADs, sendo uma para setor e outra para produtos, e ele foi criado para ser capaz de adicionar, remover, buscar, criar, listar produtos e setores.</p>
+
+###
+
+<h2 align="left">4. ORGANIZAÇÃO DO REPOSITÓRIO</h2>
+
+###
+
+<p align="left">* colocar a organizaçao aq *</p>
+
+###
+
+<h2 align="left">5. LISTAS ENCADEADAS</h2>
+
+###
+
+<p align="left">*COLOCAR EXPLICAÇÃO SOBRE LISTAS ENCADEADAS *</p>
+
+###
+
+<h2 align="left">6.  FUNÇÕES EM SETOR</h2>
+
+###
+
+<p align="left">*COLOCAR AS FUNÇÕES AQ*</p>
+
+###
+
+<h2 align="left">7. FUNÇÕES EM PRODUTO</h2>
+
+###
+
+<p align="left">*COLOCAR AS FUNÇÕES AQ*</p>
+
+###
+
+<h2 align="left">8. FUNÇÕES EM MAIN</h2>
+
+###
+
+<p align="left">*COLOCAR AS FUNÇÕES AQ*</p>
+
+###
+
+<h2 align="left"></h2>
+
+###
+
+<p align="left"></p>
 
 ###
