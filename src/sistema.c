@@ -9,18 +9,24 @@ int contem_apenas_letras( char *str){
     }
 }
 
-float lerFloat() {
-    char input[100]; // buffer para armazenar a entrada do usuário
+int contem_apenas_numeros(char *str) {
 
-    // Ler a entrada do usuário como uma string
-    printf("Digite um número decimal: ");
-    fgets(input, sizeof(input), stdin);
-
-    // Converter a string para um float usando strtod() ou atof()
-    float numero = atof(input);
-
-    return numero;
+    for (int index = 0; str[index] != '\0'; index++) {
+        if (isalpha(str[index]) && str[index]) {
+            printf("só aceita numero!!!!!!!!\n");
+            return 0;
+        }
+    }
+    return 1;
 }
+
+void upper_string(char *str) {
+    int i;
+    for (i = 0; str[i] != '\0'; i++) {
+        str[i] = toupper(str[i]);
+    }
+}
+
 void cabecalho(){
     system("cls");
     printf("------------------------------------------\n");
