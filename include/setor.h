@@ -13,7 +13,7 @@ Setor *adicionaSetor(Setor *setor, char *nome, char *descricao, char *produto);
 
 Setor *removeSetor(Setor *setor, char *nome, char *descricao, char *produto);
 
-void imprimeSetor(Setor *setor);
+void listaSetor(Setor *setor);
 
 Setor *liberaSetor(Setor *setor);
 
