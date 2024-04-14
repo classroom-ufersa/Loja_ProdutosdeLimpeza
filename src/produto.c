@@ -96,7 +96,7 @@ Produto *edita_prod(Produto *lista_prod, char *nome_antigo){
                 do{
                     printf("Digite o preco do produto:\n");
                     scanf("%f", &preco_digitado);
-                } while(lerFloat(&preco_digitado));
+                } while(1);
 
                 strcpy(aux->nome, nome_digitado);
                 strcpy(aux->marca, marca_digitada);
@@ -109,7 +109,7 @@ Produto *edita_prod(Produto *lista_prod, char *nome_antigo){
     return lista_prod;
 }
 
-Produto * removeProd(Produto *produto, char *nome, char *marca, float preco){
+Produto *removeProd(Produto *produto, char *nome, char *marca, float preco){
     Produto *ant = NULL;
     Produto *aux = produto;
 

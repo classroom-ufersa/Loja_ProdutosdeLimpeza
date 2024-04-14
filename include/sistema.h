@@ -9,6 +9,8 @@
 
 int contem_apenas_letras( char *str);
 
-float lerFloat();
+int contem_apenas_numeros(char *str);
 
-#endif //SISTEMA_H 
+void cabecalho()
+
+#endif //SISTEMA_H

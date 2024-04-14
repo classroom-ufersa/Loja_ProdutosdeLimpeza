@@ -20,18 +20,6 @@ int contem_apenas_numeros(char *str) {
     return 1;
 }
 
-float lerFloat() {
-    char input[100]; // buffer para armazenar a entrada do usuário
-
-    // Ler a entrada do usuário como uma string
-    printf("Digite um número decimal: ");
-    fgets(input, sizeof(input), stdin);
-
-    // Converter a string para um float usando strtod() ou atof()
-    float numero = atof(input);
-
-    return numero;
-}
 void cabecalho(){
     system("cls");
     printf("------------------------------------------\n");
