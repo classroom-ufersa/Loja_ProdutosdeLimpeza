@@ -26,10 +26,17 @@ Setor *adicionaSetor(Setor *setor, char *nome, char *descricao, char *produto){
     strcpy(novo_setor->nome, nome);
     strcpy(novo_setor->descricao, descricao);
     strcpy(novo_setor->produto, produto);
+    novo_setor->prox = NULL;
+
     if (setor == NULL){
-        novo_setor->prox = novo_setor;
+        return novo_setor;
     }
-    return novo_setor;
+
+    Setor *aux = setor;
+    while(aux->prox != NULL){
+        aux = aux->prox;
+    }
+    return setor;
 }
 
 Setor *removeSetor(Setor *setor, char *nome, char *descricao, char *produto){
@@ -56,7 +63,7 @@ Setor *removeSetor(Setor *setor, char *nome, char *descricao, char *produto){
         return setor;
 }
 
-void imprimeSetor(Setor *setor){
+void listaSetor(Setor *setor){
     if(setor == NULL){
         printf("Setor vazio");
         return;
@@ -116,3 +123,61 @@ Setor *LerSetores(Setor *setor){
     fclose(arq);
     return setor;
 }
+
+
+// int main() {
+//     Setor *setor = criaSetor();
+//     char nome[50];
+//     char descricao[100];
+//     char produto[50];
+//     int choice;
+
+//     do {
+//         printf("\n1. Adicionar setor\n");
+//         printf("2. Remover setor\n");
+//         printf("3. Imprimir setores\n");
+//         printf("4. Escrever setores em arquivo\n");
+//         printf("5. Ler setores de arquivo\n");
+//         printf("6. Sair\n");
+//         printf("Escolha uma opcao: ");
+//         scanf("%d", &choice);
+
+//         switch(choice) {
+//             case 1:
+//                 printf("Digite o nome do setor: ");
+//                 scanf("%s", nome);
+//                 printf("Digite a descricao do setor: ");
+//                 scanf("%s", descricao);
+//                 printf("Digite o produto do setor: ");
+//                 scanf("%s", produto);
+//                 setor = adicionaSetor(setor, nome, descricao, produto);
+//                 break;
+//             case 2:
+//                 printf("Digite o nome do setor a ser removido: ");
+//                 scanf("%s", nome);
+//                 printf("Digite a descricao do setor a ser removido: ");
+//                 scanf("%s", descricao);
+//                 printf("Digite o produto do setor a ser removido: ");
+//                 scanf("%s", produto);
+//                 setor = removeSetor(setor, nome, descricao, produto);
+//                 break;
+//             case 3:
+//                 listaSetor(setor);
+//                 break;
+//             case 4:
+//                 setor = EscreveSetores(setor);
+//                 break;
+//             case 5:
+//                 setor = LerSetores(setor);
+//                 break;
+//             case 6:
+//                 setor = liberaSetor(setor);
+//                 printf("Saindo do programa...\n");
+//                 break;
+//             default:
+//                 printf("Opcao invalida!\n");
+//         }
+//     } while(choice != 6);
+
+//     return 0;
+// }

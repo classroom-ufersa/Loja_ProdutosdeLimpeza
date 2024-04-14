@@ -5,7 +5,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <unistd.h>
 
 int contem_apenas_letras( char *str);
+
+float lerFloat();
 
 #endif //SISTEMA_H 

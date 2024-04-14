@@ -9,8 +9,6 @@ Produto *adicionarProd(Produto *lista_prod, Produto produto);
 
 Produto *criaProd(void);
 
-Produto *editaProd(Produto *produto, char *nome, char *marca, float preco);
-
-Produto *removeProd(Produto *produto, char *nome, char marca, float preco);
+Produto * removeProd(Produto *produto, char *nome, char *marca, float preco);
 
 #endif //PRODUTO_H
