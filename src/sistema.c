@@ -20,11 +20,16 @@ int contem_apenas_numeros(char *str) {
     return 1;
 }
 
+void upper_string(char *str) {
+    int i;
+    for (i = 0; str[i] != '\0'; i++) {
+        str[i] = toupper(str[i]);
+    }
+}
+
 void cabecalho(){
     system("cls");
     printf("------------------------------------------\n");
     printf("LOJA DE PRODUTOS DE LIMPEZA\n");
     printf("------------------------------------------\n");
 }
-
-

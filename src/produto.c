@@ -148,3 +148,20 @@ void lista_prod(Produto *lista_prod){
         }
     }
 }
+
+void busca_prod(Produto *lista_prod, char *nome){
+    upper_string(nome);
+
+    Produto *aux = lista_prod;
+    int encontrado = 0;
+
+    while(aux != NULL){
+        char *nome_prod = aux->prox;
+        upper_string(nome_prod);
+
+        if(strstr(nome_prod, nome) != NULL){
+            printf("Produto encontrado: \n");
+            formata
+        }
+    }
+}

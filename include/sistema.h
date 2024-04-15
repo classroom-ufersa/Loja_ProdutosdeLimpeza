@@ -11,6 +11,6 @@ int contem_apenas_letras( char *str);
 
 int contem_apenas_numeros(char *str);
 
-void cabecalho()
+void cabecalho();
 
-#endif //SISTEMA_H
+#endif //SISTEMA_H 
