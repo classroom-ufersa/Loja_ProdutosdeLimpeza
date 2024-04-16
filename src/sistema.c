@@ -1,88 +1,125 @@
 #include "../include/sistema.h"
 
-int contem_apenas_letras(char *str) {
-    for (int index = 0; str[index] != '\0'; index++) {
-        if (!isalpha(str[index]) && str[index] != ' ') {
-            printf("\nEsse campo deve conter apenas letras.\n");
-            return 0;
-        }
-    }
-    return 1;
+//Verificando se a lista de setores esta vazia
+int VaziaSetor(ListaSetor **lista){
+    return *lista == NULL;
 }
 
-int numeroInteiro(char *str) {
-    for (int i = 0; str[i] != '\0'; i++) {
-        if (!isdigit(str[i])) {
-            return 0;
-        }
+//Função para salvar os dados da lista de setores no arquivo
+void SalvarDados(ListaSetor **lista, FILE *arquivo){
+    //abrindo o arquivo para escrita
+    arquivo = fopen("dados.txt", "w");
+
+    //verificadno se o arquivo foi aberto corretamente
+    if(arquivo == NULL){
+        printf("Erro ao abrir o arquivo\n");
+        return;
     }
-    return 1;
+    
+    //variavel auxiliar
+    ListaSetor *aux = *lista;
+
+    //escevendo os dados no arquivo
+    while(aux != NULL){
+        fprintf(arquivo, " Nome: %s\n   Descricao: %s\n\n", aux->setor.nome, aux->setor.descricao);
+        fprintf(arquivo, "Produtos: \n");
+        ListaProduto *aux2 = aux->setor.produtos;
+
+        while(aux != NULL){
+            fprintf(arquivo, "Nome: %s\n  Marca:%s\n  Preco: %2f\n  Quantidade: %d\n", aux2->produto.nome, aux2->produto.marca, aux2->produto.preco, aux2->produto.quantidade);
+
+            aux2 = aux2->prox;
+        }
+        aux = aux->prox;
+    }
 }
 
-int numero_decimal(char *str) {
-    int ponto_ou_virgula = 0; 
-    if (!isdigit(str[0])){
-        return 0;
-    }
-    if (!isdigit(str[strlen(str) - 1])){
-        return 0;
-    }
-    for (int i = 0; str[i] != '\0'; i++) {
 
-        if (!(str[i] >= '0' && str[i] <= '9')) {
-            if(str[i] == ','){
-                ponto_ou_virgula++;
-                if (ponto_ou_virgula > 1){
-                    return 0;
-                }
-            }
-            else{
-                return 0;
-            }
-        }
+//Função para carregar os dados do arquivo para a lista de setores
+void CarregaDados(ListaSetor **lista, FILE *arquivo){
+    //variaveis auxiliares
+    char linha[200];
+    char NomeSetor[50];
+    char DescricaoSetor[100];
+    char NomeProduto[100];
+    char MarcaPorduto[100];
+    float precoProduto;
+    int QuantidadeProduto;
+
+    //Abrinco o arquivo modo leitura
+    arquivo = fopen("dados.txt","r");
+
+    //verificando se o arquivo foi aberto corretamente
+    if(arquivo == NULL){
+        printf("Erro ao abrir o arquivo!\n");
+        return;
     }
-    return 1;
-}
 
-int contem_apenas_numeros(char *str) {
-
-    for (int index = 0; str[index] != '\0'; index++) {
-        if (isalpha(str[index]) && str[index]) {
-            printf("só aceita numero!!!!!!!!\n");
-            return 0;
-        }
-    }
-    return 1;
-}
-
-void formata_nome(char *str) {
-    int i;
-    for (i = 0; str[i] != '\0'; i++) {
-        if (i==0){
-            str[0] = toupper(str[0]);
-        }
-        else{
-            if (str[i - 1] == ' ') {
-                str[i] = toupper(str[i]);
-            } 
-            else {
-                str[i] = tolower(str[i]);
+    //lenndo os dados do arquivo
+    while (fgets(linha, 200, arquivo) != NULL) {
+        if(strstr(linha, "Nome") != NULL){
+            sscanf(linha, "Nome: %s\n  Descricao: %s\n\n ", NomeSetor, DescricaoSetor);
+            NovoSetorArquivo(lista, NomeSetor, DescricaoSetor);
+        } else if(strstr(linha, "Produtos") != NULL){
+            while(fgets(linha, 200, arquivo) != NULL && strstr(linha, "Nome")== NULL){
+                sscanf(linha, "Nome do produto: %s\n    Marca: %s\n     Preco: %2f\n    Quantidade: %d\n\n", NomeProduto, MarcaProduto, &PrecoProduto, &QuantidadeProduto);
+                NovoProdutoArquivo(lista, NomeSetor, NomeProduto, MarcaProduto, PrecoProduto, QuantidadeProduto);
             }
         }
+    } 
+}
+
+void NovoSetorArquivo(ListaSetor **lista, char *nome, char *desccricao){
+
+    //Variaveis auxiliares
+    ListaSetor *novoSetor = (listaSetor*) malloc(sizeof(listaSetor));
+    ListaSetor *aux = NULL;
+
+    //Pegando o setor
+    strcpy(novoSetor->setor.nome, nome);
+    strcpy(novoSetor->setor.descricao, descricao);
+
+    //Procurado o setor
+    if(*lista == NULL){
+        *lista = novoSetor;
+        novoSetor->prox = NULL;
+    } else if{
+        aux = *lista;
+        while(aux->prox != NULL){
+            aux = aux->prox;
+        }
+        aux->prox = novoSetor;
+        novoSetor->prox = NULL;
     }
 }
 
+//função que pega os dados do produto no arquivo e passa para a lista de produto
+void NovoProdutoArquivo(listaSetor **lista, char *nomesetor, char *nome, char *marca, float preco, int quantidade){
+    //variaveis auxiliares
+    ListaSetor *aux = *lista;
+    ListaProduto*novoProduto = (ListaProduto*) malloc(sizeof(ListaProduto));
+    ListaProduto *aux2 = NULL;
 
-void upper_string(char *str) {
-    int i;
-    for (i = 0; str[i] != '\0'; i++) {
-        str[i] = toupper(str[i]);
+    //Pegando os dados do produto
+    strcpy(novoProduto->produto.nome, nome);
+    strcpy(novoProduto->produto.marca, marca);
+    novoProduto->produto.preco, preco;
+
+    //Procurando setor
+    while(aux != NULL && strcmp(aux->setor.nome, nomesetor) != 0){
+        aux = aux->prox;
     }
-}
 
-void cabecalho(){
-    system("cls");
-    printf("------------------------------------------\n");
-    printf("LOJA DE PRODUTOS DE LIMPEZA\n");
-    printf("------------------------------------------\n");
+    //procura produto
+    if(aux->setor.produtos == NULL){
+        aux->setor.produtos = novoProduto;
+        novoProduto->prox = NULL;
+    }else{
+        aux2 = aux->setor.produtos;
+        while(aux->prox != NULL){
+            aux2 = aux2->prox;
+        }
+        aux2->prox = novoProduto;
+        novoProduto->prox = NULL;
+    }
 }

@@ -60,7 +60,7 @@ void menu(Setor *lista_para_setores, char *local_do_arquivo)
         }
         else if (strcmp(opcao, "5") == 0)
         {
-            // lista_para_setores = removeSetor(lista_para_setores);
+             lista_para_setores = remove_produto_do_setor(lista_para_setores);
             system("cls");
         }
         else if (strcmp(opcao, "6") == 0)

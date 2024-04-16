@@ -21,4 +21,6 @@ Setor *liberaSetor(Setor *setor);
 
 void EscreveSetores(Setor *lista_para_setores, char *local_no_arq);
 
+Setor *remove_produto_do_setor(Setor* lista);
+
 #endif //SETOR_H

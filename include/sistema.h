@@ -4,19 +4,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
-#include <unistd.h>
+#include "setor.h"
 
-int contem_apenas_letras( char *str);
+//Função para verificar se a lista de setores esta vazia
+int VaziaSetor(ListaSetor **lista);
 
-int numeroInteiro(char *str);
+void SalvarDados(ListaSetor **lista, FILE *arquivo);
 
-int numero_decimal(char *str);
+void CarregarDados(ListaSetor **lista, FILE *arquivo);
 
-void formata_nome(char *str);
+void NovoSetorArquivo(ListaSetor **lista, char *nome, char *descricao);
 
-void upper_string(char *str);
-
-void cabecalho();
+void NovoProdutoArquivo(ListaSetor **lista, char *nome, char *marca, float preco, int quantidade);
 
 #endif //SISTEMA_H 

@@ -155,28 +155,6 @@ Produto *edita_prod(Produto *lista_prod, char *nome_antigo){
     return lista_prod;
 }
 
-Produto *removeProd(Produto *produto, char *nome, char *marca){
-    Produto *ant = NULL;
-    Produto *aux = produto;
-
-    while(aux != NULL){
-        if(strcmp(aux->nome, nome)== 0 && strcmp(aux->marca, marca)== 0){
-            if(ant == NULL){
-                produto = aux->prox;
-            }
-            else{
-                ant->prox = aux->prox; 
-            }
-            free(aux);
-            return produto;
-           }
-        ant = aux;
-        aux = aux->prox;
-    }
-    printf("Produto nao encontrado!\n");
-    return produto;
-}
-
 void busca_prod(Produto *lista_prod, char *nome){
     upper_string(nome);
 
