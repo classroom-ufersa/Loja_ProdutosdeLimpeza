@@ -83,17 +83,16 @@ Setor *encontra_setor(Setor *lista_setor, char nome[50]){
 Setor *insere_produto(Setor *listaSetor){
     char nome[50];
     do{
-        printf("Digite o nome do setor que deseja inserir o produto: \n");
+        printf("Digite o nome do setor que deseja inseir o produto: \n");
         scanf("%s", nome);
         getchar();
     } while(contem_apenas_letras(nome));
 
-    if(verifica_nome_setor(listaSetor, nome)== 0){ 
+    if(verifica_nome_setor(listaSetor, nome)== 0){
         Produto novoproduto = novo_produto();
-        Setor * aux = encontra_setor(listaSetor, nome);
+        Setor *aux = encontra_setor(listaSetor, nome);
         aux->produto = adicionarProd(aux->produto, novoproduto);
         return listaSetor;
-
     } else{
         printf("Esse setor nao existe!\n");
         return listaSetor;
@@ -146,39 +145,55 @@ Setor *liberaSetor(Setor *setor){
     return NULL;
 }
 
-// void EscreveSetores(Setor *setor, char *local_no_arq){
-//     FILE *arq = fopen(local_no_arq, "wt");
-//     if(arq == NULL){
-//         perror("Erro ao abrir o arquivo!\n");
-//         exit(1);
-//     }
-//     Setor *aux = setor;
+void EscreveSetores(Setor *lista_para_setores, char *local_no_arq){
+    FILE *arq = fopen(local_no_arq, "wt");
+    if(arq == NULL){
+        perror("Erro ao abrir o arquivo!\n");
+        exit(1);
+    }
+    Setor *aux = lista_para_setores;
 
-//     while(aux != NULL){
-//         fprintf(arq, "Setor: \n");
-//         fprintf(arq, "Nome do setor: %s\n", aux->nome);
-//         fprintf(arq, "Descricao do setor: %s\n", aux->descricao);
-//         fprintf(arq, "Produto do setor: %s\n", aux->prod);
-//         Produto *p = aux->prod;
-//     }
-//     fclose(arq);
-// }
+    while(aux != NULL){
+        fprintf(arq, "Setor:\t%s\t%s", aux->nome, aux->descricao);
+        Produto *produto = aux->lista_prod;
+        while(produto != NULL){
+            fprintf(arq, "Produtos:\t%s\t%s\t%s\t%d", produto->nome, produto->marca, produto->preco, produto->qntEstoque);
+            produto = produto->prox;
+        }
+        aux = aux->prox;
+    }
+    fclose(arq);
+}
 
-// Setor *LerSetores(Setor *setor){
-//     FILE *arq = fopen("Setores.txt", "rt");
-//     if(arq == NULL){
-//         printf("Erro ao abrir o arquivo!\n");
-//         exit(1);
-//     }
+Setor *lista_vazia(Setor **listarSetor){
+    if(listarSetor == NULL){
+    } else{
+        lista_setor(listaSetor);
+    }
+}
 
-//     Setor *aux = setor;
-//     while(aux != NULL ){
-//         fprintf(arq, "Setor: \n");
-//         fprintf(arq, "Nome do setor: %s\n", aux->nome);
-//         fprintf(arq, "Descricao do setor: %s\n", aux->descricao);
-//         fprintf(arq, "Produto do setor: %s\n", aux->prod);
-//         aux = aux->prox;
-//     }
-//     fclose(arq);
-//     return setor;
-// }
+Setor *ler_do_arquivo(char local_do_arquivo, Setor *lista_para_setores){
+    FILE *arq = fopen(local_do_arquivo, "rt");
+    if(arq == NULL){
+        perror("erro aoa abrir o arquivo");
+        exit(1);
+    }
+    lista_vazia(lista_para_setores);
+    char linha[200];
+    Setor setor;
+    Produto produto;
+
+    while(fgets(linha, 200, arq) != NULL){
+        Setor *aux;
+        sscanf(linha, "\t%s\t%s\t", setor.nome, setor.descricao);
+        setor.prox = NULL;
+        setor.produto = NULL;
+        lista_para_setores = adicionaSetor(lista_para_setores, setor);
+        aux = encontra_setor(lista_para_setores, setor.nome);
+    } else{
+        sscanf(linha, "Produto: \t%s\t%s\t%s\t%d\t", produto.nome, produto.marca, produto.preco, &produto.qntEstoque);
+        aux->produto = adicionarProd(lista_para_setores, setor);
+    } 
+    fclose(arq);
+    return lista_para_setores;
+}

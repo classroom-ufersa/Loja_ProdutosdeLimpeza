@@ -9,11 +9,9 @@
 
 int contem_apenas_letras( char *str);
 
-int contem_apenas_numeros(char *str);
+int numeroInteiro(char *str);
 
 int numero_decimal(char *str);
-
-int contem_apenas_numeros(char *str);
 
 void formata_nome(char *str);
 
