@@ -1,11 +1,11 @@
 #ifndef SETOR_H
 #define SETOR_H
 
-#include "produto.h"
+#include "../src/produto.c"
 
 typedef struct setor Setor;
 
-Setor *adicionaSetor(Setor *setor, char *nome, char *descricao);
+Setor *adicionaSetor(Setor *setor, Setor setor_preenchido);
 
 int verifica_nome_setor(Setor *listaSetor, char nome[50]);
 

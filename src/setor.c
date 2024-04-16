@@ -1,4 +1,4 @@
- #include "../include/setor.h"
+#include "../include/setor.h"
 
 struct setor {
     char nome[50];
@@ -8,7 +8,7 @@ struct setor {
 };
 
 
-Setor *adicionaSetor(Setor *setor, char *nome, char *descricao){
+Setor *adicionaSetor(Setor *setor, Setor setor_preenchido){
     Setor *novo_setor = (Setor*)malloc(sizeof(Setor));
 
     if(novo_setor == NULL){
@@ -16,8 +16,8 @@ Setor *adicionaSetor(Setor *setor, char *nome, char *descricao){
         exit(1);
     }
 
-    strcpy(novo_setor->nome, nome);
-    strcpy(novo_setor->descricao, descricao);
+    strcpy(novo_setor->nome, setor_preenchido.nome);
+    strcpy(novo_setor->descricao, setor_preenchido.descricao);
     novo_setor->produto = NULL;
     novo_setor->prox = NULL;
 
@@ -32,8 +32,8 @@ Setor *adicionaSetor(Setor *setor, char *nome, char *descricao){
     return setor;
 }
 
-Setor *novo_setor(){
-    Setor *novo;
+Setor novo_setor(){
+    Setor novo;
 
     char nome_digitado[50], descricao_digitada[50];
 
@@ -49,10 +49,10 @@ Setor *novo_setor(){
         getchar();
     } while(!contem_apenas_letras(descricao_digitada) || strlen(descricao_digitada) == 0);
 
-    strcpy(novo->nome, nome_digitado);
-    strcpy(novo->descricao, descricao_digitada);
-    novo->produto = NULL;
-    novo->prox = NULL;
+    strcpy(novo.nome, nome_digitado);
+    strcpy(novo.descricao, descricao_digitada);
+    novo.produto = NULL;
+    novo.prox = NULL;
 
     return novo;
 }
@@ -155,7 +155,7 @@ void EscreveSetores(Setor *lista_para_setores, char *local_no_arq){
 
     while(aux != NULL){
         fprintf(arq, "Setor:\t%s\t%s", aux->nome, aux->descricao);
-        Produto *produto = aux->lista_prod;
+        Produto *produto = aux->produto;
         while(produto != NULL){
             fprintf(arq, "Produtos:\t%s\t%s\t%s\t%d", produto->nome, produto->marca, produto->preco, produto->qntEstoque);
             produto = produto->prox;
@@ -165,34 +165,31 @@ void EscreveSetores(Setor *lista_para_setores, char *local_no_arq){
     fclose(arq);
 }
 
-Setor *lista_vazia(Setor **listarSetor){
-    if(listarSetor == NULL){
-    } else{
-        lista_setor(listaSetor);
-    }
-}
-
-Setor *ler_do_arquivo(char local_do_arquivo, Setor *lista_para_setores){
+Setor *ler_do_arquivo(char *local_do_arquivo, Setor *lista_para_setores){
     FILE *arq = fopen(local_do_arquivo, "rt");
     if(arq == NULL){
         perror("erro aoa abrir o arquivo");
         exit(1);
     }
-    lista_vazia(lista_para_setores);
     char linha[200];
     Setor setor;
     Produto produto;
 
     while(fgets(linha, 200, arq) != NULL){
         Setor *aux;
-        sscanf(linha, "\t%s\t%s\t", setor.nome, setor.descricao);
-        setor.prox = NULL;
-        setor.produto = NULL;
-        lista_para_setores = adicionaSetor(lista_para_setores, setor);
-        aux = encontra_setor(lista_para_setores, setor.nome);
-    } else{
-        sscanf(linha, "Produto: \t%s\t%s\t%s\t%d\t", produto.nome, produto.marca, produto.preco, &produto.qntEstoque);
-        aux->produto = adicionarProd(lista_para_setores, setor);
+        if (strstr(linha, "Setor") != NULL){
+            sscanf(linha, "\t%s\t%s\t", setor.nome, setor.descricao);
+            setor.prox = NULL;
+            setor.produto = NULL;
+            lista_para_setores = adicionaSetor(lista_para_setores, setor);
+            aux = encontra_setor(lista_para_setores, setor.nome);
+
+        }
+        else{
+            sscanf(linha, "Produtos: \t%s\t%s\t%s\t%d\t", produto.nome, produto.marca, produto.preco, &produto.qntEstoque);
+            aux->produto = adicionarProd(aux->produto, produto);
+        } 
+        
     } 
     fclose(arq);
     return lista_para_setores;

@@ -9,6 +9,7 @@ struct produto {
 };
 
 
+
 Produto *adicionarProd(Produto *lista_prod, Produto produto){
     Produto *novo_prod = (Produto*)malloc(sizeof(Produto));
     if(novo_prod == NULL){

@@ -7,9 +7,10 @@ int contem_apenas_letras( char *str){
             return 0;
         }
     }
+    return 1;
 }
 
-int numeroIinteiro(char *str) {
+int numeroInteiro(char *str) {
     for (int i = 0; str[i] != '\0'; i++) {
         if (!isdigit(str[i])) {
             return 0;

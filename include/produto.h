@@ -1,7 +1,7 @@
 #ifndef PRODUTO_H
 #define PRODUTO_H
 
-#include "sistema.h"
+#include "../src/sistema.c"
 
 typedef struct produto Produto;
 
