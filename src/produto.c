@@ -1,45 +1,26 @@
 #include "../include/produto.h"
+#include "../include/setor.h"
 
 struct produto {
     char nome[50];
     char marca[50];
-    char preco[10];
+    float preco[10];
     int qntEstoque;
-    Produto *prox;
 };
 
+struct listaProduto{
+    Produto *produto;
+    struct listaProduto *prox;
+};
 
+void criaProduto(ListaProduto **lista){
+    *lista = NULL;
+}
 
-Produto *adicionarProd(Produto *lista_prod, Produto produto){
-    Produto *novo_prod = (Produto*)malloc(sizeof(Produto));
-    if(novo_prod == NULL){
-        printf("Erro na alocacao da memoria! \n");
-        exit(1);
-    }
-    strcpy(novo_prod->nome, produto.nome);
-    strcpy(novo_prod->marca, produto.marca);
-    strcpy(novo_prod->preco, produto.preco);
-    novo_prod->qntEstoque = produto.qntEstoque;
-
-    novo_prod->prox = NULL;
-
-
-    if (lista_prod == NULL || strcmp(novo_prod->nome, produto.nome) < 0) {
-        novo_prod->prox = lista_prod;
-        return novo_prod;
-    }
-
-    Produto *ant = NULL;
-    Produto *aux = lista_prod;
-
-    while (aux != NULL && strcmp(aux->nome, produto.nome) < 0) {
-        ant = aux;
-        aux = aux->prox;
-    }
-    ant->prox = novo_prod;
-    novo_prod->prox = aux;
-
-    return lista_prod;
+void NovoProduto(ListaSetor **lista){
+    //variaveis auxiliares
+    char nomeSetor[50];
+    
 }
 
 Produto novo_produto(){

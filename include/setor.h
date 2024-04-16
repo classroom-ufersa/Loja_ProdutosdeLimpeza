@@ -1,26 +1,22 @@
 #ifndef SETOR_H
 #define SETOR_H
 
-#include "../src/produto.c"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
+//Definido a struct do setor
 typedef struct setor Setor;
+ //Definida a lista encadeada de setor
+typedef struct listaSetor ListaSetor;
 
-Setor *adicionaSetor(Setor *setor, Setor setor_preenchido);
+//Função para iniciar a lista de setores
+void CriaSetor(ListaSetor **lista);
 
-int verifica_nome_setor(Setor *listaSetor, char nome[50]);
+//Função para adicionar um novo setor
+void CriaSetor(ListaSetor **lista);
 
-Setor *encontra_setor(Setor *lista_setor, char nome[50]);
-
-Setor *insere_produto(Setor *listaSetor);
-
-Setor *removeSetor(Setor *setor, char *nome, char *descricao);
-
-void listaSetor(Setor *setor);
-
-Setor *liberaSetor(Setor *setor);
-
-void EscreveSetores(Setor *lista_para_setores, char *local_no_arq);
-
-Setor *remove_produto_do_setor(Setor* lista);
+//Funçaõ para remover um setor
+void RemoveSetor(ListaSetor **lista);
 
 #endif //SETOR_H

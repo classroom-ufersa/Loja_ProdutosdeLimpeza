@@ -1,9 +1,14 @@
 #ifndef PRODUTO_H
 #define PRODUTO_H
 
-#include "../src/sistema.c"
+#include <stdio.h>  
+#include <stdlib.h>
+#include <string.h>
+#include "setor.h"
 
 typedef struct produto Produto;
+
+typedef struct listaProduto listaProduto;
 
 Produto *adicionarProd(Produto *lista_prod, Produto produto);
 
