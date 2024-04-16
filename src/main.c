@@ -71,7 +71,18 @@ void menu(Setor *lista_para_setores, char *local_do_arquivo)
         }
         else if (strcmp(opcao, "7"))
         {
-            // aaaaaaa
+            system("cls");
+            Printf("Digite o nome do produto que deseja buscar: \n");
+            char nome[50];
+            scanf(" %[^\n]", nome);
+            lista_para_setores->produto = busca_prod(lista_para_setores->produto);
+            system("cls");
+        }
+        else if (strcmp(opcao, "8"))
+        {
+            system("cls");
+            break;
+            system("cls");
         }
     }
 }

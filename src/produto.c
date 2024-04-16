@@ -49,17 +49,17 @@ Produto novo_produto(){
 
     do {
         printf("Digite o nome do produto: \n");
-        scanf("%49s", nome);
+        scanf(" %[^\n]", nome);
     } while(!contem_apenas_letras(nome) || strlen(nome) > 50);
 
     do {
         printf("Digite a marca do produto:\n");
-        scanf("%49s", marca);
+        scanf(" %[^\n]", marca);
     } while(!contem_apenas_letras(marca) || strlen(marca) > 50);
 
     do {
         printf("Digite o preco do produto: \n");
-        scanf("%9s", preco);
+        scanf(" %[^\n]", preco);
         fflush(stdin);
     } while(!numero_decimal(preco) || strlen(preco) > 10);
 
