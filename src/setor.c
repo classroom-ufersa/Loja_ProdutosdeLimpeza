@@ -194,3 +194,16 @@ Setor *ler_do_arquivo(char *local_do_arquivo, Setor *lista_para_setores){
     fclose(arq);
     return lista_para_setores;
 }
+
+Setor *remove_produto_do_setor(Setor* lista){
+    char setor[50];
+    char prod[50];
+    char marca[50];
+    printf("Insira o nome do setor que esta o produto: ");
+    scanf(" %[^\n]", setor);
+    printf("Insira o nome do produto: ");
+    scanf(" %[^\n]", prod);
+    Setor * aux = encontra_setor(lista, setor);
+    aux->produto = removeProd(aux->produto, prod, marca);
+    return lista;
+}

@@ -39,7 +39,7 @@ void menu(Setor *lista_para_setores, char *local_do_arquivo)
         else if (strcmp(opcao, "2") == 0)
         {
             system("cls");
-            // lista_para_setores = removeProd(lista_para_setores); //reformule aí
+            lista_para_setores = remove_produto_do_setor(lista_para_setores);
             system("cls");
         }
         else if (strcmp(opcao, "3") == 0)
@@ -71,12 +71,12 @@ void menu(Setor *lista_para_setores, char *local_do_arquivo)
         }
         else if (strcmp(opcao, "7"))
         {
-            system("cls");
+/*             system("cls");
             Printf("Digite o nome do produto que deseja buscar: \n");
             char nome[50];
             scanf(" %[^\n]", nome);
             lista_para_setores->produto = busca_prod(lista_para_setores->produto);
-            system("cls");
+            system("cls"); */
         }
         else if (strcmp(opcao, "8"))
         {

@@ -15,7 +15,7 @@ int verifica_edicao_nome_prod(Produto *lista_prod, char nome_editado[50], char n
 
 Produto *edita_prod(Produto *lista_prod, char *nome_antigo);
 
-Produto *removeProd(Produto *produto, char *nome, char *marca, char *preco);
+Produto *removeProd(Produto *produto, char *nome, char *marca);
 
 void busca_prod(Produto *lista_prod, char *nome);
 

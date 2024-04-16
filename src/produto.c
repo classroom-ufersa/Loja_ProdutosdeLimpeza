@@ -155,12 +155,12 @@ Produto *edita_prod(Produto *lista_prod, char *nome_antigo){
     return lista_prod;
 }
 
-Produto *removeProd(Produto *produto, char *nome, char *marca, char *preco){
+Produto *removeProd(Produto *produto, char *nome, char *marca){
     Produto *ant = NULL;
     Produto *aux = produto;
 
     while(aux != NULL){
-        if(strcmp(aux->nome, nome)== 0 && strcmp(aux->marca, marca)== 0 && strcmp(aux->preco, preco)== 0){
+        if(strcmp(aux->nome, nome)== 0 && strcmp(aux->marca, marca)== 0){
             if(ant == NULL){
                 produto = aux->prox;
             }
