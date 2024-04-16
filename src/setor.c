@@ -82,6 +82,7 @@ Setor *encontra_setor(Setor *lista_setor, char nome[50]){
 
 Setor *insere_produto(Setor *listaSetor){
     char nome[50];
+    Produto produto = novo_produto();
     do{
         printf("Digite o nome do setor que deseja inseir o produto: \n");
         scanf("%s", nome);
@@ -89,9 +90,8 @@ Setor *insere_produto(Setor *listaSetor){
     } while(contem_apenas_letras(nome));
 
     if(verifica_nome_setor(listaSetor, nome)== 0){
-        Produto novoproduto = novo_produto();
         Setor *aux = encontra_setor(listaSetor, nome);
-        aux->produto = adicionarProd(aux->produto, novoproduto);
+        aux->produto = adicionarProd(aux->produto, produto);
         return listaSetor;
     } else{
         printf("Esse setor nao existe!\n");
