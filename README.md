@@ -59,19 +59,22 @@
 
 ###
 
+
+###
+
 <h2 align="left">4. ORGANIZAÇÃO DO REPOSITÓRIO</h2>
 
-###
-
-<p align="left">* colocar a organizaçao aq *</p>
+<p align="left">📁 - GerenciamentoLojaDeProdutosDeLimpeza<br>│<br>└─── bin<br>│<br>└─── include<br>        │<br>        ├──setor.h<br>        ├──produto.h<br>        ├──sistema.h<br>│<br>└─── resources<br>        │<br>        ├──dados.txt<br>│<br>└─── src<br>        │<br>        ├──setor.c<br>        ├──main.c<br>        ├──produto.c<br>        ├──sistema.c<br>│<br>└───test<br>│<br>└───README.md</p>
 
 ###
+
+
 
 <h2 align="left">5. LISTAS ENCADEADAS</h2>
 
 ###
 
-<p align="left">*COLOCAR EXPLICAÇÃO SOBRE LISTAS ENCADEADAS *</p>
+<p align="left">As listas encadeadas são uma estrutura de dados fundamental para o sistema de gerenciamento de uma loja de produtos de limpeza neste projeto. Elas são compostas por nós que armazenam dados e um ponteiro para o próximo nó na sequência. Embora permitam apenas o percurso sequencial da lista, as listas encadeadas oferecem uma solução eficiente para lidar com coleções de dados dinâmicas.<br><br>Essa estrutura é particularmente útil quando a ordem dos elementos é importante e as operações de inserção e remoção são frequentes. Mesmo que apenas permitam o percurso da lista em uma direção, as listas encadeadas simples são altamente eficazes em aplicações de gerenciamento de dados devido à sua capacidade de adaptação a mudanças no tamanho da lista e à eficiência na manipulação de operações de inserção e remoção.</p>
 
 ###
 

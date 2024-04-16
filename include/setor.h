@@ -5,9 +5,9 @@
 
 typedef struct setor Setor;
 
-Setor *adicionaSetor(Setor *setor, char *nome, char *descricao, char *produto);
+Setor *adicionaSetor(Setor *setor, char *nome, char *descricao);
 
-Setor *removeSetor(Setor *setor, char *nome, char *descricao, char *produto);
+Setor *removeSetor(Setor *setor, char *nome, char *descricao);
 
 void listaSetor(Setor *setor);
 

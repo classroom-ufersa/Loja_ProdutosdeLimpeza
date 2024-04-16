@@ -8,7 +8,7 @@ struct setor {
 };
 
 
-Setor *adicionaSetor(Setor *setor, char *nome, char *descricao, char *prod){
+Setor *adicionaSetor(Setor *setor, char *nome, char *descricao){
     Setor *novo_setor = (Setor*)malloc(sizeof(Setor));
 
     if(novo_setor == NULL){
@@ -32,8 +32,41 @@ Setor *adicionaSetor(Setor *setor, char *nome, char *descricao, char *prod){
     return setor;
 }
 
-Setor *novo_setor(Setor *listaSetor){
+Setor *novo_setor(){
+    Setor *novo;
+
+    char nome_digitado[50], descricao_digitada[50];
+
+    do{
+        printf("Digite o nome do setor:\n");
+        scanf("%s", nome_digitado);
+        getchar();
+    }while(!contem_apenas_letras(nome_digitado) || strlen(nome_digitado) == 0);
+
+    do{
+        printf("Digite a descricao do setor: \n");
+        scanf("%s\n", descricao_digitada);
+        getchar();
+    } while(!contem_apenas_letras(descricao_digitada) || strlen(descricao_digitada) == 0);
+
+    strcpy(novo->nome, nome_digitado);
+    strcpy(novo->descricao, descricao_digitada);
+    novo->produto = NULL;
+    novo->prox = NULL;
+
+    return novo;
+}
+
+int verifica_nome_setor(Setor *listaSetor, char nome[50]){
+    Setor *listaAux = listaSetor;
     
+    while(listaAux != NULL){
+        if(strcmp(listaAux->nome, nome) == 0){
+            return 0;
+        }
+        listaAux = listaAux->prox;
+    }
+    return 1;
 }
 
 Setor *encontra_setor(Setor *lista_setor, char nome[50]){
@@ -47,7 +80,7 @@ Setor *encontra_setor(Setor *lista_setor, char nome[50]){
     return NULL;
 }
 
-Setor *insere_produto(Setor *lista_setor){
+Setor *insere_produto(Setor *listaSetor){
     char nome[50];
     do{
         printf("Digite o nome do setor que deseja inserir o produto: \n");
@@ -55,25 +88,25 @@ Setor *insere_produto(Setor *lista_setor){
         getchar();
     } while(contem_apenas_letras(nome));
 
-    if(verifica_nome_prod(lista_prod, nome)== 0){ 
-        Setor * aux = encontra_setor(lista_setor, nome);
-        aux->produto = adicionarProd(aux->produto, produto);
-        return lista_prod;
+    if(verifica_nome_setor(listaSetor, nome)== 0){ 
+        Produto novoproduto = novo_produto();
+        Setor * aux = encontra_setor(listaSetor, nome);
+        aux->produto = adicionarProd(aux->produto, novoproduto);
+        return listaSetor;
 
     } else{
         printf("Esse setor nao existe!\n");
-        return lista_prod;
+        return listaSetor;
     }
 }
 
-Setor *removeSetor(Setor *setor, char *nome, char *descricao, char *prod){
+Setor *removeSetor(Setor *setor, char *nome, char *descricao){
     Setor *ant = NULL;
     Setor *aux = setor;
 
     while(aux != NULL){
         if (strcmp(aux->nome, nome) == 0 &&
-            strcmp(aux->descricao, descricao) == 0 &&
-            strcmp(aux->produto, prod) == 0){
+            strcmp(aux->descricao, descricao) == 0){
                 if(ant == NULL){
                     setor = aux->prox;
                 }
@@ -100,7 +133,7 @@ void listaSetor(Setor *setor){
      while(aux != NULL){
         printf("Nome do setor: %s\n", aux->nome);
         printf("Descricao do setor: %s\n", aux->descricao);
-        printf("Produto do setor: %s\n", aux->prod);
+
 
         aux = aux->prox;
      }
@@ -131,21 +164,21 @@ Setor *liberaSetor(Setor *setor){
 //     fclose(arq);
 // }
 
-Setor *LerSetores(Setor *setor){
-    FILE *arq = fopen("Setores.txt", "rt");
-    if(arq == NULL){
-        printf("Erro ao abrir o arquivo!\n");
-        exit(1);
-    }
+// Setor *LerSetores(Setor *setor){
+//     FILE *arq = fopen("Setores.txt", "rt");
+//     if(arq == NULL){
+//         printf("Erro ao abrir o arquivo!\n");
+//         exit(1);
+//     }
 
-    Setor *aux = setor;
-    while(aux != NULL ){
-        fprintf(arq, "Setor: \n");
-        fprintf(arq, "Nome do setor: %s\n", aux->nome);
-        fprintf(arq, "Descricao do setor: %s\n", aux->descricao);
-        fprintf(arq, "Produto do setor: %s\n", aux->prod);
-        aux = aux->prox;
-    }
-    fclose(arq);
-    return setor;
-}
+//     Setor *aux = setor;
+//     while(aux != NULL ){
+//         fprintf(arq, "Setor: \n");
+//         fprintf(arq, "Nome do setor: %s\n", aux->nome);
+//         fprintf(arq, "Descricao do setor: %s\n", aux->descricao);
+//         fprintf(arq, "Produto do setor: %s\n", aux->prod);
+//         aux = aux->prox;
+//     }
+//     fclose(arq);
+//     return setor;
+// }
