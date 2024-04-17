@@ -1,13 +1,13 @@
-#include "../include/setor.h"
-#include "../include/produto.h"
-
-struct setor {
+#include "C:\Users\marii\OneDrive\Área de Trabalho\Loja_ProdutosdeLimpeza\include\setor.h"
+#include "C:\Users\marii\OneDrive\Área de Trabalho\Loja_ProdutosdeLimpeza\include\produto.h"
+struct setor
+{
     char nome[50];
     char descricao[100];
     ListaProduto *produtos;
 };
-
-struct listaSetor{
+struct listaSetor
+{
     Setor setor;
     struct listaSetor *prox;
 };
@@ -17,60 +17,59 @@ void CriaSetor(ListaSetor **lista){
 }
 
 void NovoSetor(ListaSetor **lista){
-    //variaveis auxiliares
-    ListaSetor *novoSetor = (ListaSetor*)malloc(sizeof(ListaSetor));
+    //Variaveis auxiliares
+    ListaSetor *novoSetor = (ListaSetor*) malloc(sizeof(ListaSetor));
     ListaSetor *aux = NULL;
 
-    //pegando setor
-    printf("Digite o nome do setor:\n");
-    scanf("%s\n", novoSetor->setor.nome);
+    //Pegando o setor
+    printf("Digite o nome do setor: ");
+    scanf("%s", novoSetor->setor.nome);
 
-    printf("Digite a descricao do setor: \n ");
-    scanf("%s\n", novoSetor->setor.descricao);
+    printf("Digite a descricao do setor: ");
+    scanf("%s", novoSetor->setor.descricao);
 
-    //procurando o setor
+    //Procurando o setor
     if(*lista == NULL){
         *lista = novoSetor;
         novoSetor->prox = NULL;
-        printf("Setor adicionado com sucesso!\n");
-    } else{
+        printf("Setor adicionado com sucesso\n");
+    }else{
         aux = *lista;
         while(aux->prox != NULL){
             aux = aux->prox;
         }
         aux->prox = novoSetor;
         novoSetor->prox = NULL;
-        printf("Setor adicionado com sucesso!\n");
+        printf("Setor adicionado com sucesso\n");
     }
-
 }
 
 void RemoveSetor(ListaSetor **lista){
-    //variaveis auxiliares
+    //Variaveis auxiliares
     ListaSetor *aux = *lista;
     ListaSetor *anterior = NULL;
     char nome[50];
 
-    //pegando o nome do setor
-    printf("Digite o nome do setor que deseja remover: \n");
+    //Pegando o nome do setor
+    printf("Digite o nome do setor que deseja remover: ");
     scanf("%s", nome);
 
-    //procurando o setor
+    //Procurando o setor
     while(aux != NULL && strcmp(aux->setor.nome, nome) != 0){
         anterior = aux;
         aux = aux->prox;
     }
 
-    //removendo o setor
+    //Removendo o setor
     if(aux == NULL){
-        printf("Setor nao encontrado!\n");
-    } else if(anterior == NULL){
+        printf("Setor nao encontrado\n");
+    }else if(anterior == NULL){
         *lista = aux->prox;
         free(aux);
-        printf("Setor removido com sucesso!\n");
-    } else{
+        printf("Setor removido com sucesso\n");
+    }else{
         anterior->prox = aux->prox;
         free(aux);
-        printf("Setor removido com sucessso!\n");
+        printf("Setor removido com sucesso\n");
     }
 }

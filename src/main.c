@@ -1,97 +1,113 @@
 #include "setor.c"
+#include "produto.c"
+#include "sistema.c"
 
-void menu(Setor *lista_para_setores, char *local_do_arquivo)
-{
-    char opcao[100];
-    Setor setor_novo;
-    Produto produto_novo;
+int main (void){
 
-    lista_para_setores = ler_do_arquivo(local_do_arquivo, lista_para_setores);
+    //variavel de opcao
+    char opcao;
 
-    while (1)
-    {
-        printf("-------------MENU-------------\n");
-        printf("[1] Adicionar produto \n");
-        printf("[2] Remover produto \n");
-        printf("[3] Editar produto \n");
-        printf("[4] Adicionar novo setor\n");
-        printf("[5] Remover setor existente\n");
-        printf("[6] Listar setores existentes\n");
-        printf("[7] Buscar produto \n");
-        printf("[8] Sair \n");
-        printf("--------------------------------\n");
+    //variavel de tratativa
+    int tratativa;
 
-        do
-        {
-            printf("Escolha uma opcao do menu: ");
-            scanf("%s", opcao);
-            getchar();
-        } while (!numeroInteiro(opcao));
+    //variavel que ira guardar os dados do arquivo
+    FILE *setor;
 
-        if (strcmp(opcao, "1") == 0)
+    //inicalizando a lista de setores
+    ListaSetor *listaSetor;
+    CriaSetor(&listaSetor);
+
+    //carregando os dados do arquivo para a lista de setores
+    CarregarDados(&listaSetor, setor);
+
+    //menu principal
+    do{
+
+        printf("-------------Menu Principal-------------\n");
+        printf("1 - Adicionar Produto\n");
+        printf("2 - Remover Produto\n");
+        printf("3 - Editar Produto\n");
+        printf("4 - Adicionar Setor\n");
+        printf("5 - Remover Setor\n");
+        printf("6 - Buscar Produtos\n");
+        printf("7 - Listar Setores e Produtos\n");
+        printf("8 - Sair\n");
+
+        printf("Opcao: ");
+        scanf("%c", &opcao);
+        system("clear");
+
+        switch (opcao) 
         {
-            system("cls");
-            sleep(1);
-            produto_novo = novo_produto();
-            lista_para_setores->produto = adicionarProd(lista_para_setores->produto, produto_novo);
-            system("cls");
-        }
-        else if (strcmp(opcao, "2") == 0)
-        {
-            system("cls");
-            lista_para_setores = remove_produto_do_setor(lista_para_setores);
-            system("cls");
-        }
-        else if (strcmp(opcao, "3") == 0)
-        {
-            system("cls");
-            printf("Digite o nome do produto que deseja editar\n");
-            char nome_antigo[50];
-            scanf(" %[^\n]", nome_antigo);
-            lista_para_setores->produto = edita_prod(lista_para_setores->produto, nome_antigo);
-            system("cls");
-        }
-        else if (strcmp(opcao, "4") == 0)
-        {
-            system("cls");
-            setor_novo = novo_setor();
-            lista_para_setores = adicionaSetor(lista_para_setores, setor_novo);
-            system("cls");
-        }
-        else if (strcmp(opcao, "5") == 0)
-        {
-             lista_para_setores = remove_produto_do_setor(lista_para_setores);
-            system("cls");
-        }
-        else if (strcmp(opcao, "6") == 0)
-        {
-            system("cls");
-            listaSetor(lista_para_setores);
-            system("cls");
-        }
-        else if (strcmp(opcao, "7"))
-        {
-/*             system("cls");
-            Printf("Digite o nome do produto que deseja buscar: \n");
-            char nome[50];
-            scanf(" %[^\n]", nome);
-            lista_para_setores->produto = busca_prod(lista_para_setores->produto);
-            system("cls"); */
-        }
-        else if (strcmp(opcao, "8"))
-        {
-            system("cls");
+            case '1':
+            //verificando se a lista de setores esta vazia
+            if(VaziaSetor(&listaSetor)){
+                printf("Nenhum setor cadastrado, para adicionar um produto adicione um setor\n");
+                break;
+            }
+
+            NovoProduto(&listaSetor);
             break;
-            system("cls");
-        }
-    }
-}
 
-int main(void)
-{
-    char local_no_arquivo[50];
-    strcpy(local_no_arquivo, "setores.txt");
-    Setor *lista_para_setores = NULL;
-    menu(lista_para_setores, local_no_arquivo);
+            case '2':
+            //verificando se a lista de setores esta vazia
+            if(VaziaSetor(&listaSetor)){
+                printf("Nenhum setor cadastrado, para remover um produto adicione um setor\n");
+                break;
+            }
+            RemoveProduto(&listaSetor);
+            break;
+
+            case '3':
+            //verificando se a lista de setores esta vazia
+            if(VaziaSetor(&listaSetor)){
+                printf("Nenhum setor cadastrado, para editar um produto adicione um setor\n");
+                break;
+            }
+            EditarProduto(&listaSetor);
+            break;
+
+            case '4':
+            NovoSetor(&listaSetor);
+            break;
+
+            case '5':
+            //verificando se a lista de setores esta vazia
+            if(VaziaSetor(&listaSetor)){
+                printf("Nenhum setor cadastrado\n");
+                break;
+            }
+            RemoveSetor(&listaSetor);
+            break;
+
+            case '6':
+            //verificando se a lista de setores esta vazia
+            if(VaziaSetor(&listaSetor)){
+                printf("Nenhum setor cadastrado\n");
+                break;
+            }
+            BuscaProduto(&listaSetor);
+            break;
+
+            case '7':
+            //verificando se a lista de setores esta vazia
+            if(VaziaSetor(&listaSetor)){
+                printf("Nenhum setor cadastrado\n");
+                break;
+            }
+            MostrarDados(&listaSetor);
+            break;
+
+            case '8':
+            break;
+
+            default:
+                printf("Opcao invalida\n");
+                break;
+        }
+    } while (opcao != '8');
+
+    SalvarDados(&listaSetor, setor);
+    printf("Progarma encerrado com sucesso!\n");
     return 0;
 }

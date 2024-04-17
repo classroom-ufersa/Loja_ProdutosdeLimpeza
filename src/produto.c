@@ -128,7 +128,7 @@ void EditaProduto(ListaSetor **lista){
     char nomeSetor[50];
     char nomeProduto[50];
     char marca[100];
-    flloat preco;
+    float preco;
     int quantidade;
 
     //lendo o nome do setor
