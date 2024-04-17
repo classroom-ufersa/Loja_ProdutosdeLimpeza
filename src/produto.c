@@ -1,5 +1,6 @@
-#include "../include/produto.h"
-#include "../include/setor.h"
+#include "C:\Users\shamy\Desktop\estruturas 1- unidade 3\Loja_ProdutosdeLimpeza\include\produto.h"
+#include "C:\Users\shamy\Desktop\estruturas 1- unidade 3\Loja_ProdutosdeLimpeza\include\setor.h"
+#include "C:\Users\shamy\Desktop\estruturas 1- unidade 3\Loja_ProdutosdeLimpeza\include\sistema.h"
 
 struct produto
 {

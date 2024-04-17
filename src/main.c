@@ -97,7 +97,7 @@ int main(void)
         printf("Opcao: ");
         scanf(" %c", &opcao);
         system("cls");
-        opcao = opcao(opcao);
+        opcao = Opcao(opcao);
         switch (opcao)
         {
             case '1':

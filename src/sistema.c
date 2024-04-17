@@ -1,4 +1,6 @@
-#include "C:\Users\marii\OneDrive\Área de Trabalho\Loja_ProdutosdeLimpeza\include\sistema.h"
+#include "C:\Users\shamy\Desktop\estruturas 1- unidade 3\Loja_ProdutosdeLimpeza\include\sistema.h"
+#include "C:\Users\shamy\Desktop\estruturas 1- unidade 3\Loja_ProdutosdeLimpeza\include\produto.h"
+#include "C:\Users\shamy\Desktop\estruturas 1- unidade 3\Loja_ProdutosdeLimpeza\include\setor.h"
 
 //verificando se a lista de setores está vazia
 int VaziaSetor(ListaSetor **lista){

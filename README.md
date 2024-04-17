@@ -122,41 +122,161 @@ As principais desvantagens apresentadas pelo uso de Listas encadeadas são:
 - **Consumo de memória**: As listas encadeadas podem consumir mais memória do que outras estruturas de dados, devido à necessidade de armazenar ponteiros adicionais para cada elemento.
 
 ## **7.0-Funções em Setor** 
-### Função adicionaSetor
+### Função CriaSetor
 
-- **Descrição:** .
+- **Descrição:** Essa função irá criar a lista de Setor.
 
 ```c
-Setor *adicionaSetor(Setor *setor, Setor setor_preenchido);
+void CriaSetor(ListaSetor **lista);
+```
+
+### Função NovoSetor
+
+- **Descrição:** Essa função irá criar um Setor e adiciona na lista.
+
+```c
+void NovoSetor(ListaSetor **lista);
+```
+
+### Função RemoveSetor
+
+- **Descrição:** Essa função pedir para o usuário informar o nome do setor que deseja remover e o remove da lista.
+
+```c
+void RemoveSetor(ListaSetor **lista);
 ```
 
 ## **8.0-Funções em Produto**
-### Função adicionarProd
+### Função CriaProduto
 
-- **Descrição:** .
+- **Descrição:** Essa função irá criar a lista para produtos.
 
 ```c
-Produto *adicionarProd(Produto *lista_prod, Produto produto);
+void CriaProduto(ListaProduto **lista);
+```
+
+### Função NovoProduto
+
+- **Descrição:** Essa função irá adicionar um produto no setor que o usuário informar, para o produto será informado nome, marca, preço e quantidade em estoque.
+
+```c
+void NovoProduto(ListaSetor **lista);
+```
+
+### Função RemoveProduto
+
+- **Descrição:** Essa função irá remover um produto (nome informado pelo usuário) de um determinado setor (que também será informado pelo usuário).
+
+```c
+void RemoveProduto(ListaSetor **lista);
+```
+
+### Função EditaProduto
+
+- **Descrição:** Essa função irá editar informações que o usuário deseja editar de um produto, informando de qual setor é o produto.
+
+```c
+void EditaProduto(ListaSetor **lista);
+```
+
+### Função BuscaProduto
+
+- **Descrição:** Essa função irá buscar as informações de um produto, informando o nome do setor que ele está e o nome de tal produto.
+
+```c
+void BuscaProduto(ListaSetor **lista);
+```
+
+### Função MostrarDados
+
+- **Descrição:** Essa função irá mostrar os dados de todos os setores disponíveis, bem como, as informações de todos os produtos que estão em determinados setores.
+
+```c
+void MostrarDados(ListaSetor **lista);
+```
+
+### Função PassarProdutoArquivo
+
+- **Descrição:** Essa função irá carregar no arquivo txt(dados.txt) os dados das funções usadas durante a execução do programa.
+
+```c
+void PassarProdutoArquivo(ListaSetor **lista,char *NomeSetor, char *nomeproduto, float preco, char *marca, int quantidade);
 ```
 
 ## **9.0-Funções em Tratativas**
 
-### Função numeroInteiro
+### Função VaziaSetor
 
-- **Descrição:** .
+- **Descrição:** Essa função verifica se tem setores cadastrados.
 
 ```c
-int numeroInteiro(char *str);
+int VaziaSetor(ListaSetor **lista);
+```
+
+### Função SalvarDados
+
+- **Descrição:** Essa função serve para pegar os dados que esrtão na lista encadeada e jogar para o arquivo(dados.txt).
+
+```c
+void SalvarDados(ListaSetor **lista, FILE *arquivo);
+```
+
+### Função verificaCaracterEspecial
+
+- **Descrição:** Essa função veririfica se há caracteres especiais no que o usuário digitar no terminal.
+
+```c
+int verificaCaracterEspecial (char* nome);
+```
+
+### Função Verificanum
+
+- **Descrição:** Essa função veririfica se há números quando o usuário digitar em um função que só pede string's.
+
+```c
+int Verificanum(char* nome);
+```
+
+### Função verificanome
+
+- **Descrição:** Esta função vai unir as funções Verificanum e verificaCaracterEspecial.
+
+```c
+int verificanome(char* nome);
+```
+
+### Função passarMaiuscula
+
+- **Descrição:** Esta função alterar todas as letras para maiúscula.
+
+```c
+void passarMaiuscula(char* nome);
+```
+
+### Função VerificaInt
+
+- **Descrição:** Essa função veririfica se só há números (usada quando pedir quantidade de produtos).
+
+```c
+int VerificaInt(int *nome);
+```
+
+### Função VerificaFloat
+
+- **Descrição:** Essa função veririfica se o usuário digitou apenas números, deve aceitar float(usada quando pedir para informar preço de produto).
+
+```c
+int VerificaFloat(float *num);
 ```
 
 ## **10.0-Funções em main**
 
 ### Função menu
 
-- **Descrição:** .
+- **Descrição:** Essa função vai englobar todas as outras funções, apresentando o menu principal com as funcionaldiades da loja de produtos de limpeza.
 
 ```c
-void menu(Setor *lista_para_setores, char *local_do_arquivo)
+int main (void)
 ```
 
 <img width=100% src="https://capsule-render.vercel.app/api?type=waving&height=120&color=FFFFFF&section=footer"/>
