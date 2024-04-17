@@ -96,8 +96,8 @@ int main(void)
     
         printf("Opcao: ");
         scanf(" %c", &opcao);
-        system("clear");
-
+        system("cls");
+        opcao = opcao(opcao);
         switch (opcao)
         {
             case '1':
@@ -106,8 +106,9 @@ int main(void)
                     printf("Nenhum setor cadastrado\n");
                     break;
                 }
-
+                system ("cls");
                 NovoProduto(&listaSetor);
+                system ("cls");
                 break;
 
             case '2':
@@ -116,7 +117,9 @@ int main(void)
                     printf("Nenhum setor cadastrado\n");
                     break;
                 }
+                system ("cls");
                 RemoveProduto(&listaSetor);
+                system ("cls");
                 break;
 
             case '3':
@@ -125,11 +128,14 @@ int main(void)
                     printf("Nenhum setor cadastrado\n");
                     break;
                 }
+                system ("cls");
                 EditaProduto(&listaSetor);
+                system ("cls");
                 break;
 
             case '4':
                 NovoSetor(&listaSetor);
+                system ("cls");
                 break;               
 
             case '5':
@@ -138,7 +144,9 @@ int main(void)
                     printf("Nenhum setor cadastrado\n");
                     break;
                 }
+                system ("cls");
                 RemoveSetor(&listaSetor);
+                system ("cls");
                 break;
 
             case '6':
@@ -147,7 +155,9 @@ int main(void)
                     printf("Nenhum setor cadastrado\n");
                     break;
                 }
+                system ("cls");
                 BuscaProduto(&listaSetor);
+                system ("cls");
                 break;
 
             case '7':
@@ -156,6 +166,7 @@ int main(void)
                     printf("Nenhum setor cadastrado\n");
                     break;
                 }
+                system ("cls");
                 MostrarDados(&listaSetor);
                 break;
 

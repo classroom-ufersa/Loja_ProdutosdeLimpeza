@@ -108,3 +108,16 @@ int VerificaFloat(float *num) {
     }
     return 0;
 }
+
+char Opcao(char opcao)
+{
+    // verificando se o usuadio digitou apenas um caracter e se esse caracter é um numero
+    if(getchar() != '\n')
+    {
+        printf("Opcao invalida! Digite apenas um caracter: ");
+        while(getchar() != '\n'){
+            scanf(" %c", &opcao);
+        }
+    }
+    return opcao;
+}

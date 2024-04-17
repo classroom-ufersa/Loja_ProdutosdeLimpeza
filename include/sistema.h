@@ -26,3 +26,6 @@ int VerificaInt(int *nome);
 
 //verificando se o usuario digitou apenas numeros, deve aceitar float
 int VerificaFloat(float *num);
+
+//verifica se o usuário está digitando a opcao correta e se essa opcao esta no menu
+char Opcao(char opcao); 
