@@ -1,29 +1,28 @@
-#ifndef PRODUTO_H
-#define PRODUTO_H
-
 #include <stdio.h>  
 #include <stdlib.h>
 #include <string.h>
 #include "setor.h"
 
+//Definindo a struct do produto
 typedef struct produto Produto;
 
-typedef struct listaProduto listaProduto;
+//Definindo a lista encadeada do produto
+typedef struct listaProduto ListaProduto;
 
-Produto *adicionarProd(Produto *lista_prod, Produto produto);
+//Funcao que cria a lista de produtos
+void CriaProduto(ListaProduto **lista);
 
-Produto novo_produto();
+//Função que adiciona um novo produto na lista de setores
+void NovoProduto(ListaSetor **lista);
 
-int verifica_nome_prod(Produto *lista_prod, char nome[50]);
+//Função que remove um produto da lista de setores
+void RemoveProduto(ListaSetor **lista);
 
-int verifica_edicao_nome_prod(Produto *lista_prod, char nome_editado[50], char nome_antigo[50]);
+//Função que edita um produto da lista de setores
+void EditaProduto(ListaSetor **lista);
 
-Produto *edita_prod(Produto *lista_prod, char *nome_antigo);
+//Função para buscar um produto na lista de setores
+void BuscaProduto(ListaSetor **lista);
 
-Produto *removeProd(Produto *produto, char *nome, char *marca);
-
-void busca_prod(Produto *lista_prod, char *nome);
-
-void lista_prod(Produto *lista_prod);
-
-#endif //PRODUTO_H
+//Função para mostrar os dados das listas de setores
+void MostrarDados(ListaSetor **lista);

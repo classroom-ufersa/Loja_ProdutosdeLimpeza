@@ -11,8 +11,6 @@ int VaziaSetor(ListaSetor **lista);
 
 void SalvarDados(ListaSetor **lista, FILE *arquivo);
 
-void CarregarDados(ListaSetor **lista, FILE *arquivo);
-
 void NovoSetorArquivo(ListaSetor **lista, char *nome, char *descricao);
 
 void NovoProdutoArquivo(ListaSetor **lista, char *nome, char *marca, float preco, int quantidade);

@@ -34,41 +34,6 @@ void SalvarDados(ListaSetor **lista, FILE *arquivo){
     }
 }
 
-
-//Função para carregar os dados do arquivo para a lista de setores
-void CarregaDados(ListaSetor **lista, FILE *arquivo){
-    //variaveis auxiliares
-    char linha[200];
-    char NomeSetor[50];
-    char DescricaoSetor[100];
-    char NomeProduto[100];
-    char MarcaPorduto[100];
-    float precoProduto;
-    int QuantidadeProduto;
-
-    //Abrinco o arquivo modo leitura
-    arquivo = fopen("dados.txt","r");
-
-    //verificando se o arquivo foi aberto corretamente
-    if(arquivo == NULL){
-        printf("Erro ao abrir o arquivo!\n");
-        return;
-    }
-
-    //lenndo os dados do arquivo
-    while (fgets(linha, 200, arquivo) != NULL) {
-        if(strstr(linha, "Nome") != NULL){
-            sscanf(linha, "Nome: %s\n  Descricao: %s\n\n ", NomeSetor, DescricaoSetor);
-            NovoSetorArquivo(lista, NomeSetor, DescricaoSetor);
-        } else if(strstr(linha, "Produtos") != NULL){
-            while(fgets(linha, 200, arquivo) != NULL && strstr(linha, "Nome")== NULL){
-                sscanf(linha, "Nome do produto: %s\n    Marca: %s\n     Preco: %2f\n    Quantidade: %d\n\n", NomeProduto, MarcaProduto, &PrecoProduto, &QuantidadeProduto);
-                NovoProdutoArquivo(lista, NomeSetor, NomeProduto, MarcaProduto, PrecoProduto, QuantidadeProduto);
-            }
-        }
-    } 
-}
-
 void NovoSetorArquivo(ListaSetor **lista, char *nome, char *desccricao){
 
     //Variaveis auxiliares
