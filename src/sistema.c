@@ -35,90 +35,76 @@ void SalvarDados(ListaSetor **lista, FILE *arquivo){
     }
 }
 
-//Função para carregar os dados do arquivo para a lista de setores
-void CarregarDados(ListaSetor **lista, FILE *arquivo){
-   //Variaves auxiliares
-    char linha[200];
-    char NomeSetor[50];
-    char DescricaoSetor[100];
-    char NomeProduto[50];
-    char MarcaProduto[100];
-    float PrecoProduto;
-    int QuantidadeProduto;
-    
-    //Abrindo o arquivo em modo de leitura
-    arquivo = fopen("dados.txt", "r");
+//TRATATIVAS
 
-    //verificando se o arquivo foi aberto corretamente
-    if(arquivo == NULL){
-        printf("Erro ao abrir o arquivo\n");
-        return;
+//verifica se há caracteres especiais no nome
+int verificaCaracterEspecial (char* nome) {
+    int i;
+    for(i = 0; i < strlen(nome); i++){
+        if(((nome[i] >= 33 && nome[i] <= 47) || (nome[i] >= 58 && nome[i] <= 64) || (nome[i] >= 91 && nome[i] <= 96) || (nome[i] >= 123 && nome[i] <= 126))){
+            return 1;
+        }
     }
+    return 0;
+}
 
-    //lendo os dados do arquivo
-    while(fgets(linha, 200, arquivo) != NULL){
-        if(strstr(linha, "Nome") != NULL){
-            sscanf(linha, "Nome %s   Descricao %s", NomeSetor, DescricaoSetor);
-            NovoSetorArquivo(lista, NomeSetor, DescricaoSetor);
-        }else if(strstr(linha, "Produtos") != NULL){
-            while(fgets(linha, 200, arquivo) != NULL && strstr(linha, "Nome") == NULL){
-                sscanf(linha, "NomeProduto %s   Marca %s    Preco %f    Quantidade %d", NomeProduto, MarcaProduto, &PrecoProduto, &QuantidadeProduto);
-                NovoProdutoArquivo(lista, NomeSetor, NomeProduto, MarcaProduto, PrecoProduto, QuantidadeProduto);
+//verifica se há números no nome
+int Verificanum(char* nome) {
+    for (int i = 0; nome[i] != '\0'; i++) {
+        if (isdigit(nome[i])) {
+            return 1;
+        }
+    }
+    return 0;
+
+}
+
+//junção das funções de verificação de caracteres especiais e números
+int verificanome(char* nome) {
+    if (verificaCaracterEspecial(nome) == 1) {
+        printf("Nome invalido! Digite apenas letras.\n");
+        return 1;
+    }
+    if (Verificanum(nome) == 1) {
+        printf("Nome invalido! Digite apenas letras.\n");
+        return 1;
+    }
+    return 0;
+}
+
+//passar os dados informados pelo usuário para maiúsculo
+void passarMaiuscula(char* nome) {
+    for (int i = 0; nome[i] != '\0'; i++) 
+    {
+        nome[i] = toupper(nome[i]);
+    }
+}
+
+//verifica se so há numeros
+int VerificaInt(int *nome) {
+    for (int i = 0; nome[i] != '\0'; i++) {
+        if (!isdigit(nome[i])) {
+            return 1; // Não são apenas números
+        }
+    }
+    return 0; // São apenas números
+}
+
+//verificando se o usuario digitou apenas numeros, deve aceitar float
+int VerificaFloat(float *num) {
+    int i;
+    int ponto = 0;
+    for (i = 0; num[i] != '\0'; i++) {
+        if (!isdigit(num[i])) {
+            if (num[i] == '.') {
+                ponto++;
+            } else {
+                return 1;
             }
         }
     }
-}
-
-void NovoSetorArquivo(ListaSetor **lista, char *nome, char *descricao){
-    //Variaveis auxiliares
-    ListaSetor *novoSetor = (ListaSetor*) malloc(sizeof(ListaSetor));
-    ListaSetor *aux = NULL;
-
-    //Pegando o setor
-    strcpy(novoSetor->setor.nome, nome);
-    strcpy(novoSetor->setor.descricao, descricao);
-
-    //Procurando o setor
-    if(*lista == NULL){
-        *lista = novoSetor;
-        novoSetor->prox = NULL;
-    }else{
-        aux = *lista;
-        while(aux->prox != NULL){
-            aux = aux->prox;
-        }
-        aux->prox = novoSetor;
-        novoSetor->prox = NULL;
+    if (ponto > 1) {
+        return 1;
     }
-}
-
-//Função que pega os dados do produto no arquivo e passa para a lista de produtos
-void NovoProdutoArquivo(ListaSetor **lista, char *nomesetor, char *nome, char *marca, float preco, int quantidade){
-    //Variaveis auxiliares
-    ListaSetor *aux = *lista;
-    ListaProduto *novoProduto = (ListaProduto*) malloc(sizeof(ListaProduto));
-    ListaProduto *aux2 = NULL;
-
-    //Pegando o produto
-    strcpy(novoProduto->produto.nome, nome);
-    strcpy(novoProduto->produto.marca, marca);
-    novoProduto->produto.preco = preco;
-
-    //Procurando o setor
-    while(aux != NULL && strcmp(aux->setor.nome, nomesetor) != 0){
-        aux = aux->prox;
-    }
-
-    //Procurando o produto
-    if(aux->setor.produtos == NULL){
-        aux->setor.produtos = novoProduto;
-        novoProduto->prox = NULL;
-    }else{
-        aux2 = aux->setor.produtos;
-        while(aux2->prox != NULL){
-            aux2 = aux2->prox;
-        }
-        aux2->prox = novoProduto;
-        novoProduto->prox = NULL;
-    }
+    return 0;
 }

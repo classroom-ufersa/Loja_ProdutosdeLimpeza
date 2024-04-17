@@ -1,6 +1,7 @@
 #include <stdio.h>  
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "setor.h"
 
 //Definindo a struct do produto
@@ -26,3 +27,6 @@ void BuscaProduto(ListaSetor **lista);
 
 //Função para mostrar os dados das listas de setores
 void MostrarDados(ListaSetor **lista);
+
+//Função que irar pegar os dados do arquivo e passar para a lista de setores
+void PassarProdutoArquivo(ListaSetor **lista,char *NomeSetor, char *nomeproduto, float preco, char *marca, int quantidade);
