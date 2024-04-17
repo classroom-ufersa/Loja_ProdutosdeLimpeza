@@ -1,6 +1,7 @@
-#include "C:\Users\shamy\Desktop\estruturas 1- unidade 3\Loja_ProdutosdeLimpeza\include\setor.h"
-#include "C:\Users\shamy\Desktop\estruturas 1- unidade 3\Loja_ProdutosdeLimpeza\include\produto.h"
-#include "C:\Users\shamy\Desktop\estruturas 1- unidade 3\Loja_ProdutosdeLimpeza\include\sistema.h"
+#include "C:\Users\marii\OneDrive\Área de Trabalho\github\Loja_ProdutosdeLimpeza\include\produto.h"
+#include "C:\Users\marii\OneDrive\Área de Trabalho\github\Loja_ProdutosdeLimpeza\include\setor.h"
+#include "C:\Users\marii\OneDrive\Área de Trabalho\github\Loja_ProdutosdeLimpeza\include\sistema.h"
+
 struct setor
 {
     char nome[50];
@@ -10,10 +11,11 @@ struct setor
 struct listaSetor
 {
     Setor setor;
-    struct listaSetor *prox;
+    ListaSetor *prox;
 };
 
-void CriaSetor(ListaSetor **lista){
+void CriaSetor(ListaSetor **lista)
+{
     *lista = NULL;
 }
 
@@ -78,5 +80,29 @@ void RemoveSetor(ListaSetor **lista){
         anterior->prox = aux->prox;
         free(aux);
         printf("Setor removido com sucesso\n");
+    }
+}
+
+//Função para transferir os dados do arquivo para a lista de setores
+void PassaSetorArquivo(char nome[], char descricao[], ListaSetor **lista){
+    //Variaveis auxiliares
+    ListaSetor *novoSetor = (ListaSetor*) malloc(sizeof(ListaSetor));
+    ListaSetor *aux = NULL;
+
+    //Passando os dados
+    strcpy(novoSetor->setor.nome, nome);
+    strcpy(novoSetor->setor.descricao, descricao);
+
+    //Procurando o setor
+    if(*lista == NULL){
+        *lista = novoSetor;
+        novoSetor->prox = NULL;
+    }else{
+        aux = *lista;
+        while(aux->prox != NULL){
+            aux = aux->prox;
+        }
+        aux->prox = novoSetor;
+        novoSetor->prox = NULL;
     }
 }

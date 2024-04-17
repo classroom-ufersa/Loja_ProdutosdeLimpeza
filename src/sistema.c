@@ -1,6 +1,6 @@
-#include "C:\Users\shamy\Desktop\estruturas 1- unidade 3\Loja_ProdutosdeLimpeza\include\sistema.h"
-#include "C:\Users\shamy\Desktop\estruturas 1- unidade 3\Loja_ProdutosdeLimpeza\include\produto.h"
-#include "C:\Users\shamy\Desktop\estruturas 1- unidade 3\Loja_ProdutosdeLimpeza\include\setor.h"
+#include "C:\Users\marii\OneDrive\Área de Trabalho\github\Loja_ProdutosdeLimpeza\include\produto.h"
+#include "C:\Users\marii\OneDrive\Área de Trabalho\github\Loja_ProdutosdeLimpeza\include\setor.h"
+#include "C:\Users\marii\OneDrive\Área de Trabalho\github\Loja_ProdutosdeLimpeza\include\sistema.h"
 
 //verificando se a lista de setores está vazia
 int VaziaSetor(ListaSetor **lista){
@@ -18,21 +18,22 @@ void SalvarDados(ListaSetor **lista, FILE *arquivo){
         return;
     }
 
-    //variavel auxiliar
+    //Variavel auxiliar
     ListaSetor *aux = *lista;
 
-    //escrevendo os dados no arquivo
+    //Percorrendo a lista de setores
     while(aux != NULL){
-        fprintf(arquivo, "Nome %s   Descricao %s\n\n", aux->setor.nome, aux->setor.descricao);                                                                                                          
-        fprintf(arquivo, "Produtos\n");
-        ListaProduto *aux2 = aux->setor.produtos;
+        //Salvando o nome e a descrição do setor
+        fprintf(arquivo, "Nome do setor: %s   Descricao: %s\n", aux->setor.nome, aux->setor.descricao);
 
-        while(aux2 != NULL){
-            fprintf(arquivo, "Nome %s   Marca %s    Preco %f    Quantidade %d\n", aux2->produto.nome, aux2->produto.marca, aux2->produto.preco, aux2->produto.quantidade);
-
-            aux2 = aux2->prox;
+        //Salvando os produtos do setor
+        ListaProduto *auxProduto = aux->setor.produtos;
+        fprintf(arquivo, "Produtos: \n");
+        while(auxProduto != NULL){
+            fprintf(arquivo, "Nome: %s   Marca: %s    Preco: %.2f    Quantidade: %d\n", auxProduto->produto.nome, auxProduto->produto.marca, auxProduto->produto.preco, auxProduto->produto.quantidade);
+            auxProduto = auxProduto->prox;
         }
-
+        fprintf(arquivo, "\n");
         aux = aux->prox;
     }
 }
@@ -111,15 +112,13 @@ int VerificaFloat(float *num) {
     return 0;
 }
 
+//Função para verificar se o usuario esta digitando apenas a opção que tem no menu
 char Opcao(char opcao)
 {
     // verificando se o usuadio digitou apenas um caracter e se esse caracter é um numero
-    if(getchar() != '\n')
-    {
-        printf("Opcao invalida! Digite apenas um caracter: ");
-        while(getchar() != '\n'){
-            scanf(" %c", &opcao);
-        }
+    while(getchar() != '\n'){
+        printf("Opcao invalida");
+        scanf(" %c", &opcao);
     }
     return opcao;
 }

@@ -1,7 +1,6 @@
-#include "C:\Users\shamy\Desktop\estruturas 1- unidade 3\Loja_ProdutosdeLimpeza\include\produto.h"
-#include "C:\Users\shamy\Desktop\estruturas 1- unidade 3\Loja_ProdutosdeLimpeza\include\setor.h"
-#include "C:\Users\shamy\Desktop\estruturas 1- unidade 3\Loja_ProdutosdeLimpeza\include\sistema.h"
-
+#include "C:\Users\marii\OneDrive\Área de Trabalho\github\Loja_ProdutosdeLimpeza\include\produto.h"
+#include "C:\Users\marii\OneDrive\Área de Trabalho\github\Loja_ProdutosdeLimpeza\include\setor.h"
+#include "C:\Users\marii\OneDrive\Área de Trabalho\github\Loja_ProdutosdeLimpeza\include\sistema.h"
 struct produto
 {
     char nome[50];
