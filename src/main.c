@@ -2,112 +2,174 @@
 #include "produto.c"
 #include "sistema.c"
 
-int main (void){
+int main(void)
+{   
 
-    //variavel de opcao
+    //Variavel de opcao
     char opcao;
 
-    //variavel de tratativa
+    //Variavel de tratativa
     int tratativa;
 
-    //variavel que ira guardar os dados do arquivo
+    //Variavel que irar guardar os dados do arquivo
     FILE *setor;
 
-    //inicalizando a lista de setores
+    //Inicializando a lista de setores
     ListaSetor *listaSetor;
     CriaSetor(&listaSetor);
 
-    //carregando os dados do arquivo para a lista de setores
-    CarregarDados(&listaSetor, setor);
+    //Carregando os dados do arquivo
 
-    //menu principal
-    do{
+    int Quantidade;
+    char NomeSetor[200];
+    char NomeProduto[200];
+    char Marca[200];
+    char linha[200];
+    char Descricao[200];
+    float Preco;
 
-        printf("-------------Menu Principal-------------\n");
-        printf("1 - Adicionar Produto\n");
-        printf("2 - Remover Produto\n");
-        printf("3 - Editar Produto\n");
-        printf("4 - Adicionar Setor\n");
-        printf("5 - Remover Setor\n");
-        printf("6 - Buscar Produtos\n");
-        printf("7 - Listar Setores e Produtos\n");
+    //abrindo o arquivo
+    setor = fopen("dados.txt", "r");
+
+    //verificando se o arquivo foi aberto corretamente
+    if (setor == NULL)
+    {
+        printf("Erro ao abrir o arquivo\n");
+        return 1;
+    }
+
+    //pegando os dados do arquivo
+    while (fgets(linha, 200, setor) != NULL)
+    {
+        //pegando o nome do setor
+        if(strstr(linha, "Nome do setor: ") != NULL){
+           sscanf(linha, "Nome do setor: %s   Descricao: %s\n", NomeSetor, Descricao);
+           ListaSetor *NovoSetor = (ListaSetor *)malloc(sizeof(ListaSetor));
+
+            strcpy(NovoSetor->setor.nome, NomeSetor);
+            strcpy(NovoSetor->setor.descricao, Descricao);
+
+            NovoSetor->prox = NULL;
+
+            if(listaSetor == NULL){
+                listaSetor = NovoSetor;
+            }
+            else{
+                ListaSetor *aux = listaSetor;
+                while(aux->prox != NULL){
+                    aux = aux->prox;
+                }
+                aux->prox = NovoSetor;
+            }
+
+        }
+
+        else if(strstr(linha, "Produtos: ")){
+            while(fgets(linha, 200, setor) != NULL)
+            {
+                if(strstr(linha, "Nome: ") != NULL){
+                    sscanf(linha, "Nome: %s   Marca: %s    Preco: %f    Quantidade: %d\n", NomeProduto, Marca, &Preco, &Quantidade);
+                    PassarProdutoArquivo(&listaSetor, NomeSetor, NomeProduto, Preco, Marca, Quantidade);
+                }
+                else{
+                    break;
+                }
+            }
+        }
+    }
+
+    
+
+    //Menu principal
+    do
+    {
+            
+        printf("Menu Principal\n");
+        printf("1 - Adicionar Prpduto\n");
+        printf("2 - Remover produto\n");
+        printf("3 - Editar produto\n");   
+        printf("4 - Adicionar setor\n");
+        printf("5 - Remover setor\n");
+        printf("6 - Buscar produtos\n");
+        printf("7 - Listar setores e seus produtos\n");
         printf("8 - Sair\n");
-
+    
         printf("Opcao: ");
-        scanf("%c", &opcao);
+        scanf(" %c", &opcao);
         system("clear");
 
-        switch (opcao) 
+        switch (opcao)
         {
             case '1':
-            //verificando se a lista de setores esta vazia
-            if(VaziaSetor(&listaSetor)){
-                printf("Nenhum setor cadastrado, para adicionar um produto adicione um setor\n");
-                break;
-            }
+                //Verificando se a lista de setores está vazia
+                if(VaziaSetor(&listaSetor)){
+                    printf("Nenhum setor cadastrado\n");
+                    break;
+                }
 
-            NovoProduto(&listaSetor);
-            break;
+                NovoProduto(&listaSetor);
+                break;
 
             case '2':
-            //verificando se a lista de setores esta vazia
-            if(VaziaSetor(&listaSetor)){
-                printf("Nenhum setor cadastrado, para remover um produto adicione um setor\n");
+                //Verificando se a lista de setores está vazia
+                if(VaziaSetor(&listaSetor)){
+                    printf("Nenhum setor cadastrado\n");
+                    break;
+                }
+                RemoveProduto(&listaSetor);
                 break;
-            }
-            RemoveProduto(&listaSetor);
-            break;
 
             case '3':
-            //verificando se a lista de setores esta vazia
-            if(VaziaSetor(&listaSetor)){
-                printf("Nenhum setor cadastrado, para editar um produto adicione um setor\n");
+                //Verificando se a lista de setores está vazia
+                if(VaziaSetor(&listaSetor)){
+                    printf("Nenhum setor cadastrado\n");
+                    break;
+                }
+                EditaProduto(&listaSetor);
                 break;
-            }
-            EditarProduto(&listaSetor);
-            break;
 
             case '4':
-            NovoSetor(&listaSetor);
-            break;
+                NovoSetor(&listaSetor);
+                break;               
 
             case '5':
-            //verificando se a lista de setores esta vazia
-            if(VaziaSetor(&listaSetor)){
-                printf("Nenhum setor cadastrado\n");
+                //Verificando se a lista de setores está vazia
+                if(VaziaSetor(&listaSetor)){
+                    printf("Nenhum setor cadastrado\n");
+                    break;
+                }
+                RemoveSetor(&listaSetor);
                 break;
-            }
-            RemoveSetor(&listaSetor);
-            break;
 
             case '6':
-            //verificando se a lista de setores esta vazia
-            if(VaziaSetor(&listaSetor)){
-                printf("Nenhum setor cadastrado\n");
+                //Verificando se a lista de setores está vazia
+                if(VaziaSetor(&listaSetor)){
+                    printf("Nenhum setor cadastrado\n");
+                    break;
+                }
+                BuscaProduto(&listaSetor);
                 break;
-            }
-            BuscaProduto(&listaSetor);
-            break;
 
             case '7':
-            //verificando se a lista de setores esta vazia
-            if(VaziaSetor(&listaSetor)){
-                printf("Nenhum setor cadastrado\n");
+                //Verificando se a lista de setores está vazia
+                if(VaziaSetor(&listaSetor)){
+                    printf("Nenhum setor cadastrado\n");
+                    break;
+                }
+                MostrarDados(&listaSetor);
                 break;
-            }
-            MostrarDados(&listaSetor);
-            break;
 
             case '8':
-            break;
+                break;
 
             default:
                 printf("Opcao invalida\n");
                 break;
-        }
+            }
+
     } while (opcao != '8');
 
     SalvarDados(&listaSetor, setor);
-    printf("Progarma encerrado com sucesso!\n");
+    printf("Programa encerrado com sucesso!\n");
     return 0;
 }
