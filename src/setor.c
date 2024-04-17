@@ -25,9 +25,13 @@ void NovoSetor(ListaSetor **lista){
     //Pegando o setor
     printf("Digite o nome do setor: ");
     scanf("%s", novoSetor->setor.nome);
+    verificanome(novoSetor->setor.nome);
+    passarMaiuscula(novoSetor->setor.nome);
 
     printf("Digite a descricao do setor: ");
     scanf("%s", novoSetor->setor.descricao);
+    verificanome(novoSetor->setor.descricao);
+    passarMaiuscula(novoSetor->setor.descricao);
 
     //Procurando o setor
     if(*lista == NULL){
@@ -54,6 +58,8 @@ void RemoveSetor(ListaSetor **lista){
     //Pegando o nome do setor
     printf("Digite o nome do setor que deseja remover: ");
     scanf("%s", nome);
+    verificanome(nome);
+    passarMaiuscula(nome);
 
     //Procurando o setor
     while(aux != NULL && strcmp(aux->setor.nome, nome) != 0){
